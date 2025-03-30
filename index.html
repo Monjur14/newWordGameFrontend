@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="level1.css" />
+    <title>Word Game</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="preload" href="Assets/Images/GameLogo.webp" as="image" />
+    <link rel="preload" href="Assets/Images/level1.webp" as="image" />
+    <link rel="preload" href="Assets/Images/playbutton.png" as="image" />
+    <link rel="stylesheet" href="sweetalert.css" />
+  </head>
+
+  <body>
+    <div class="parent_div">
+      <div class="main_div">
+        <div class="timer-container">
+          <p id="timer" class="hidden">15s</p>
+        </div>
+
+        <!-- Home Screen -->
+        <div class="screen1 flex">
+          <img src="Assets/Images/game-test-logo3.png" alt="" class="game_logo" />
+
+          <button class="cssbuttons-io-button play_button">
+            Play Now
+            <div class="icon">
+              <svg
+                height="24"
+                width="24"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+          </button>
+          <!-- <img src="Assets/Images/playbutton.png" alt="" class="play_button" /> -->
+        </div>
+
+        <!-- Level 1 Screen -->
+        <div class="screen2 hidden">
+          <div class="level_container">
+            <!-- <img src="Assets/Images/level1.webp" alt="" class="level" /> -->
+          </div>
+
+          <div class="hidden game_main_container">
+            <div class="input_div">
+              <div class="win_lose_msg">
+                <span class="hidden win_msg">Word Matched</span>
+                <span class="hidden lose_msg">Word Didn't Matched</span>
+              </div>
+              <div class="answer_box">
+                <!-- <span class="loader"></span> -->
+                <input
+                  type="text"
+                  class="give_input animate__animated animate__fadeInDown"
+                  value=""
+                  readonly
+                />
+                <input
+                  type="text"
+                  class="give_input animate__animated animate__fadeInUp"
+                  value=""
+                  readonly
+                />
+                <input
+                  type="text"
+                  class="give_input animate__animated animate__fadeInDown"
+                  value=""
+                  readonly
+                />
+              </div>
+            </div>
+
+            <div class="random_textbox_container1">
+              <div class="random_text_box1" id="random_text_box1">
+                
+              </div>
+            </div>
+            <div class="btn_container">
+              <button class="reset_btn custom_button check_word_btn">
+                <span>Reset</span>
+                <img src="Assets/Images/refresh.png" alt="" class="btn_img" />
+              </button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="sweetalert.js"></script>
+  </body>
+</html>

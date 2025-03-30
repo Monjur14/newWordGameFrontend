@@ -1,0 +1,120 @@
+.screen1 {
+  position: absolute;
+  padding-top: 4rem;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.game_logo {
+  width: 220px;
+  animation: logoAnimation 1.2s alternate;
+}
+
+.play_button {
+  cursor: pointer; 
+  margin-bottom: 4rem;
+  animation: playButtonAnimation 1s;
+}
+
+@keyframes logoAnimation {
+  0% {
+    scale: 0.5;
+    transform: translateY(-10px);
+    opacity: 0%;
+  }
+  25% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-25%);
+  }
+  60% {
+    transform: translateY(0px);
+  }
+  70% {
+    transform: translateY(-15%);
+  }
+  80% {
+    transform: translateY(-10%);
+  }
+  70% {
+    transform: translateY(-5%);
+  }
+  100% {
+    scale: 1;
+    transform: translateY(0px);
+    opacity: 100%;
+  }
+}
+
+@keyframes playButtonAnimation {
+  0% {
+    scale: 0.5;
+    opacity: 0%;
+  }
+  100% {
+    scale: 1;
+    opacity: 100%;
+  }
+}
+
+
+.cssbuttons-io-button {
+  background: #ffffff;
+  color: #000;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #f5dd09;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.cssbuttons-io-button .icon {
+  background: rgb(247, 210, 2);
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #e0d204a6;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+
+

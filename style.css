@@ -1,0 +1,570 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Timer  */
+.timer-container {
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  top: 1.5%;
+  right: 2%;
+  text-align: center;
+}
+
+#timer {
+  font-size: 0.8rem;
+  color: #333;
+  background-color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Timer End */
+
+.d-none {
+  display: none;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.custom_button {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.custom_button:hover {
+  background-color: #fff;
+}
+
+.custom_button:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
+.scoreBoard {
+  position: absolute;
+  width: auto;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.8rem;
+  background: #ffffff;
+  left: 0.5rem;
+  top: 0.5rem;
+  border-radius: 5px;
+}
+
+.win_score {
+  color: rgba(0, 128, 0, 0.747);
+  font-weight: bold;
+}
+
+.lose_score {
+  color: rgba(255, 0, 0, 0.712);
+  font-weight: bold;
+}
+
+.main_div {
+  width: 350px;
+  min-height: 90vh;
+  background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), 
+    url(Assets/Images/game-test-bg1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+  position: relative;
+}
+
+
+
+
+.flex {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+.level_container {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.level_name {
+  font-size: 25px;
+  color: #fcb614;
+  text-align: center;
+  background: white;
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+}
+
+.level {
+  width: 85px;
+  height: 100px;
+  animation: level 2s;
+  position: absolute;
+}
+
+@keyframes level {
+  0% {
+    top: 35%;
+    scale: 1;
+    opacity: 0;
+  }
+  25% {
+    top: 35%;
+    scale: 1.5;
+  }
+  50% {
+    top: 35%;
+    scale: 1.5;
+  }
+  100% {
+    top: 4%;
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+/* screen1 start */
+
+/* screen1 end */
+
+/* screen2 start */
+
+.give_input,
+.give_input2,
+.give_input3 {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bolder;
+  border: none;
+  border-radius: 6px;
+  /* background: rgb(230, 165, 14); */
+  background: #fff;
+  /* color: #061b77; */
+  color: #000;
+}
+
+
+
+.win_lose_msg {
+  height: 20px;
+  font: bold;
+  margin-bottom: 0.2rem;
+}
+
+.win_msg,
+.win_msg2 {
+  color: green;
+}
+
+.lose_msg,
+.lose_msg2 {
+  color: red;
+}
+
+.input_div {
+  width: 100%;
+  position: absolute;
+  top: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.select_level {
+  position: relative;
+  z-index: 9999;
+  outline: none;
+  border-radius: 3px;
+  border: none;
+  margin-top: 5px;
+}
+
+
+/* Level 1 CSS Start  */
+.randomInputBox {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bolder;
+  border: none;
+  border-radius: 6px;
+  background: white;
+  color: #000;
+  cursor: pointer;
+}
+
+.random_textbox_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.random_textbox_container1 {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 60%;
+  left: 0%;
+}
+
+
+.random_text_box1{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.letter {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border: none;
+  text-align: center;
+}
+
+.random_text_box {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #ffffffb6;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1.5rem;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+/* Level 1 CSS Start End */
+
+.random_textbox_container2 {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  top: 50%;
+}
+
+.random_text_box_level2 {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  padding-top: 1.5rem;
+  gap: 1.5rem;
+  overflow: hidden;
+  transform: rotate(30deg);
+  top: 52%;
+  z-index: 99999 !important;
+}
+
+.random_text_box2 {
+  width: 100%;
+  position: absolute;
+  top: 65%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.random_text_box3 {
+  width: 100%;
+  position: absolute;
+  top: 65%;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn_container {
+  position: absolute;
+  bottom: 8%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn_container button {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+
+.try_again_btn {
+  width: 120px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.btn_img {
+  display: inline-block;
+  width: 16px;
+}
+
+/* .reset_btn:active {
+    scale: 0.6;
+    transition: all;
+    transition-duration: 1000ms;
+} */
+
+.game_main_container {
+  animation: gameLoaded 1s;
+}
+
+@keyframes gameLoaded {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.game_main_container2 {
+  animation: gameLoaded 1s;
+}
+
+.game_main_container3 {
+  animation: gameLoaded 1s;
+}
+
+/* screen2 end */
+
+/* Result Screen 1 Start */
+
+.win_pic {
+  width: 250px;
+}
+
+.lose-h1 {
+  position: absolute;
+  font-size: 0.7rem;
+  top: 4%;
+  color: red;
+  background: #fff;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+}
+
+.win-h1 {
+  position: absolute;
+  font-size: 0.7rem;
+  top: 4%;
+  color: #000;
+  background: #fff;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+}
+
+/* Result Screen 1 End */
+
+@media (min-height: 800px) and (max-height: 3000px) {
+  .main_div {
+    width: 350px;
+    min-height: 700px;
+    background-image: url(Assets/Images/GameBackground.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    position: relative;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 600px) {
+  .main_div {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(Assets/Images/GameBackground.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    position: relative;
+  }
+}
+
+.feedback_container {
+  width: 80%;
+  background-color: #fff;
+  padding: 30px 15px;
+  border-radius: 15px;
+}
+
+label {
+  cursor: pointer;
+}
+
+.mt2 {
+  margin-top: 7px;
+}
+
+.mt {
+  margin: 10px 0px;
+}
+
+.feedback_btn {
+  display: block;
+  padding: 8px 15px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.feedback_btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.feedback_btn:active {
+  background-color: #3e8e41;
+  transform: translateY(0);
+}
+
+/* uses in level 3 */
+.custom_button2 {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 90px;
+}
+
+.custom_button2:hover {
+  background-color: #fff;
+}
+
+.custom_button2:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
