@@ -55,7 +55,7 @@ function timer() {
         if (timeLeft === 0) {
             timerCount--;
             if (timerCount === 0) {
-                window.location.href = "index.html"
+                window.location.href = "/pages/levels/level1/level1.html"
             }
             fetchData2()
             clearInterval(countdown);

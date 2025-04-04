@@ -40,10 +40,10 @@ setTimeout(() => {
 //Fetch Data 1
 async function fetchData() {
     try {
-        const response = await fetch("https://wordstar.shabox.mobi/ai/getwords?length=4");
+        const response = await fetch("http://localhost:5000/random-word?length=4");
         const data = await response.json();
-        apidata = data;
-        //console.log(apidata)
+        apidata = [data.word];
+        console.log(apidata)
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -79,24 +79,10 @@ function autoCheckValue() {
     parseInt(localStorage.getItem('correctScore'), 10) || 0;
     const tempFilledWord = filledInputs.join('');
     filledWord = tempFilledWord.toLowerCase();
-    let gameResult;
-    fetch(`https://wordstar.shabox.mobi/ai/validate?word=${filledWord}`)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Network response was not ok " + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        gameResult = data;
-    })
-    .catch(error => {
-        console.error("Fetch error:", error); 
-    });
 
     if (filledInputs.length === 4) {
         setTimeout(() => {
-            if (gameResult) {
+            if (apidata[0].toLowerCase() === filledWord) {
                 timerCount = 2
                 clearInterval(countdown);
                 fillInputDiv2()
@@ -172,25 +158,16 @@ function getRandomFourWord() {
         shuffledWord = shuffleWord(originalWord);
     }
 
-    const transformations = [
-        "rotate(-33deg) translate(50px) rotate(5deg)",
-        "rotate(150deg) translate(50px) rotate(-180deg)",
-        "rotate(240deg) translate(50px) rotate(-270deg)",
-        "rotate(60deg) translate(50px) rotate(-90deg)"
-    ];
 
     for (let i = 0; i < shuffledWord.length; i++) {
         setTimeout(() => {
             const input = document.createElement("input");
             input.type = "text";
-            input.classList.add("letter", "randomInputBox");
+            // input.classList.add("letter", "randomInputBox");
+            input.classList.add("randomInputBox", "animate__animated", i % 2 !== 0 ? "animate__fadeInDown" : "animate__fadeInUp");
             input.value = shuffledWord[i];
             input.maxLength = 1;
             input.readOnly = true;
-
-            if (i < transformations.length) {
-                input.style.transform = transformations[i];
-            }
 
             input.addEventListener("click", () => {
                 fillBlankInput2(input.value);
@@ -240,10 +217,10 @@ function shuffleWord(word) {
 function reset_btn2() {
     clearInterval(countdown);
     randomTextBoxLevelTwo.innerText = ""
-    fetch("https://wordstar.shabox.mobi/ai/getwords?length=4")
+    fetch("http://localhost:5000/random-word?length=4")
     .then((res) => res.json())
     .then((data) => {
-            apidata = data
+            apidata = [data.word]
             getRandomFourWord()
             timer()
         })

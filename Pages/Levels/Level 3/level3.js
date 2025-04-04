@@ -47,10 +47,10 @@ setTimeout(() => {
 //Fetch Data 1
 async function fetchData() {
     try {
-        const response = await fetch("https://wordstar.shabox.mobi/ai/getwords?length=5");
+        const response = await fetch("http://localhost:5000/random-word?length=5");
         const data = await response.json();
-        apidata = data;
-        //console.log(apidata)
+        apidata = [data.word];
+        console.log(apidata)
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -85,22 +85,6 @@ timer()
 function autoCheckValue() {
     const tempFilledWord = filledInputs.join('');
     filledWord = tempFilledWord.toLowerCase();
-    //console.log("this is filled word", filledWord)
-    //console.log("this is original word", originalWord)
-    let gameResult;
-    fetch(`https://wordstar.shabox.mobi/ai/validate?word=${filledWord}`)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Network response was not ok " + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        gameResult = data;
-    })
-    .catch(error => {
-        console.error("Fetch error:", error); 
-    });
 
     if (filledInputs.length === 5) {
         setTimeout(() => {
@@ -128,10 +112,10 @@ function autoCheckValue() {
                             redirect: 'follow'
                         };
                           
-                        fetch(`https://wordstar.shabox.mobi/ai/postscore?MSISDN=${msisdnValue}&Score=${userTime}`, requestOptions)
-                        .then(response => response.text())
-                        .then(result => console.log(result))
-                        .catch(error => console.log('error', error));
+                        // fetch(`https://wordstar.shabox.mobi/ai/postscore?MSISDN=${msisdnValue}&Score=${userTime}`, requestOptions)
+                        // .then(response => response.text())
+                        // .then(result => console.log(result))
+                        // .catch(error => console.log('error', error));
 
                         console.log(result)                      
                         timers.classList.add("hidden")
@@ -210,26 +194,14 @@ function getRandomFiveWord() {
         shuffledWord = shuffleWord(originalWord);
     }
 
-    const transformations = [
-        "rotate(-40deg) translate(50px) rotate(8deg)",
-        "rotate(155deg) translate(50px) rotate(-185deg)",
-        "rotate(240deg) translate(50px) rotate(-270deg)",
-        "rotate(25deg) translate(50px) rotate(-55deg)",
-        "rotate(90deg) translate(50px) rotate(-120deg)"
-    ];
-
     for (let i = 0; i < shuffledWord.length; i++) {
         setTimeout(() => {
             const input = document.createElement("input");
             input.type = "text";
-            input.classList.add("letter", "randomInputBox");
+            input.classList.add("randomInputBox", "animate__animated", i % 2 !== 0 ? "animate__fadeInDown" : "animate__fadeInUp");
             input.value = shuffledWord[i];
             input.maxLength = 1;
             input.readOnly = true;
-
-            if (i < transformations.length) {
-                input.style.transform = transformations[i];
-            }
 
             input.addEventListener("click", () => {
                 fillBlankInput2(input.value);
@@ -279,10 +251,10 @@ function shuffleWord(word) {
 function reset_btn2() {
     clearInterval(countdown);
     randomTextBoxLevelTwo.innerText = ""
-    fetch("https://wordstar.shabox.mobi/ai/getwords?length=5")
+    fetch("http://localhost:5000/random-word?length=5")
         .then((res) => res.json())
         .then((data) => {
-            apidata = data
+            apidata = [data.word]
             getRandomFiveWord()
             timer()
         })
