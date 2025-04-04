@@ -1,10 +1,16 @@
 //Select DOM Elements
-const screenThree = document.querySelector(".screen3");
+const screenFour = document.querySelector(".screen4");
 const gameMainContainer2 = document.querySelector(".game_main_container2");
+const winContainer3 = document.querySelector(".win_container3");
+const resultContainer3 = document.querySelector(".result_screen3");
 const resetBtn = document.querySelector(".reset_btn");
+const playAgain = document.querySelector(".play_again");
 const winMSG2 = document.querySelector(".win_msg2")
 const loseMSG2 = document.querySelector(".lose_msg2")
 const randomTextBoxLevelTwo = document.querySelector(".random_text_box_level2")
+const screenThree = document.querySelector(".screen3")
+const timeContainer = document.querySelector(".timer-container")
+const timers = document.querySelector(".timer")
 const timerElement = document.getElementById("timer");
 
 //Global Variables
@@ -13,12 +19,13 @@ let apidata;
 let randomThreeLetterWord = "";
 let fillIndex = 0;
 let filledInputs = [];
+let level = 1;
 win = null;
 lose = 0;
 let originalWord = "";
 let timerCount = 2;
 
-//Get The userTime From localStorage
+//Get the userTime
 function startTimer() {
     let userTime = parseInt(localStorage.getItem('userTime')) || 0;
  
@@ -33,14 +40,14 @@ function startTimer() {
 //Start The Game
 setTimeout(() => {
     gameMainContainer2.classList.remove("hidden")
-    getRandomFourWord()
+    getRandomFiveWord()
     startTimer()
 }, 1000)
 
 //Fetch Data 1
 async function fetchData() {
     try {
-        const response = await fetch("http://localhost:5000/random-word?length=4");
+        const response = await fetch("http://localhost:5000/random-word?length=5");
         const data = await response.json();
         apidata = [data.word];
         console.log(apidata)
@@ -52,7 +59,7 @@ fetchData();
 
 //Timer Function
 function timer() {
-    let timeLeft = 20;
+    let timeLeft = 30;
     countdown = setInterval(() => {
         setTimeout(() => {
             timeLeft--;
@@ -63,11 +70,11 @@ function timer() {
         if (timeLeft === 0) {
             timerCount--;
             if(timerCount === 0){
-                window.location.href = "index.html"
+                window.location.href = "/pages/levels/level1/level1.html"
             }
             clearInterval(countdown);
             randomTextBoxLevelTwo.innerText = ""
-            getRandomFourWord()
+            getRandomFiveWord()
             timer()
         }
     }, 1000);
@@ -76,28 +83,29 @@ timer()
 
 //Auto Check The User Input Value
 function autoCheckValue() {
-    parseInt(localStorage.getItem('correctScore'), 10) || 0;
     const tempFilledWord = filledInputs.join('');
     filledWord = tempFilledWord.toLowerCase();
 
-    if (filledInputs.length === 4) {
+    if (filledInputs.length === 5) {
         setTimeout(() => {
+
             if (apidata[0].toLowerCase() === filledWord) {
                 timerCount = 2
                 clearInterval(countdown);
                 fillInputDiv2()
                 incrementCorrectScore();
                 winMSG2.classList.remove("hidden")
-                if (localStorage.getItem('correctScore') == 4) {
+
+                if (localStorage.getItem('correctScore') == 3) {
                     clearInterval(startTimer());
                     setTimeout(() => {
-                        window.location.href = "./level3.html"
+                        window.location.href = "/pages/levels/level4/level4.html"
                     }, 700)
                 } else {
                     fetchData()
                     setTimeout(() => {
                         timer()
-                        getRandomFourWord()
+                        getRandomFiveWord()
                         winMSG2.classList.add("hidden")
                     }, 500)
                 }
@@ -107,6 +115,7 @@ function autoCheckValue() {
                 fillInputDiv2()
                 incrementIncorrectScore();
                 loseMSG2.classList.remove("hidden")
+
                 setTimeout(() => {
                     timer()
                     loseMSG2.classList.add("hidden")
@@ -139,14 +148,14 @@ function incrementIncorrectScore() {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            getRandomFourWord();
+           getRandomFiveWord();
         }
     });
     localStorage.setItem('incorrectScore', incorrectScore.toString());
 }
 
-//Function For Getting Random Four Characters Word
-function getRandomFourWord() {
+//Function For Getting Random Five Characters Word
+function getRandomFiveWord() {
     const randomIndex = Math.floor(Math.random() * apidata.length);
     tempOriginalWord = apidata[0];
     originalWord = tempOriginalWord.toUpperCase();
@@ -154,16 +163,16 @@ function getRandomFourWord() {
 
     let shuffledWord = shuffleWord(originalWord);
 
+    console.log()
+
     while (shuffledWord === originalWord) {
         shuffledWord = shuffleWord(originalWord);
     }
-
 
     for (let i = 0; i < shuffledWord.length; i++) {
         setTimeout(() => {
             const input = document.createElement("input");
             input.type = "text";
-            // input.classList.add("letter", "randomInputBox");
             input.classList.add("randomInputBox", "animate__animated", i % 2 !== 0 ? "animate__fadeInDown" : "animate__fadeInUp");
             input.value = shuffledWord[i];
             input.maxLength = 1;
@@ -217,11 +226,71 @@ function shuffleWord(word) {
 function reset_btn2() {
     clearInterval(countdown);
     randomTextBoxLevelTwo.innerText = ""
-    fetch("http://localhost:5000/random-word?length=4")
-    .then((res) => res.json())
-    .then((data) => {
+    fetch("http://localhost:5000/random-word?length=5")
+        .then((res) => res.json())
+        .then((data) => {
             apidata = [data.word]
-            getRandomFourWord()
+            getRandomFiveWord()
             timer()
         })
 }
+
+//Play Again Button
+playAgain.addEventListener("click", () => {
+    window.location.href = "./index.html"
+})
+
+//Feedback Submit
+document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+    e.preventDefault(); 
+
+    const feedback = document.querySelector('input[name="feedback"]:checked');
+    if (!feedback) {
+        Swal.fire({
+            text: "দয়া করে একটি মতামত নির্বাচন করুন।",
+            icon: "error",
+            willOpen: () => {
+                const swalContainer = document.querySelector('.swal2-container');
+                swalContainer.style.zIndex = '99999999999';
+            }
+        })
+        return;
+    }
+
+    const feedbackValue = feedback.value;
+
+    const msisdnValue = sessionStorage.getItem("msisdn");
+
+    const MSISDN = msisdnValue;
+    const apiURL = `https://wordstar.shabox.mobi/ai/postfeedback?MSISDN=${MSISDN}&feedback=${encodeURIComponent(feedbackValue)}`;
+
+    fetch(apiURL)
+        .then(response => {
+            if (response.ok) {
+                Swal.fire({
+                    text: "আপনার মতামত সফলভাবে জমা দেওয়া হয়েছে।",
+                    icon: "success",
+                    willOpen: () => {
+                        const swalContainer = document.querySelector('.swal2-container');
+                        swalContainer.style.zIndex = '99999999999';
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'index.html';
+                    }
+                });
+            } else {
+                Swal.fire({
+                    text: "মতামত জমা দিতে সমস্যা হয়েছে। আবার চেষ্টা করুন।",
+                    icon: "error",
+                    willOpen: () => {
+                        const swalContainer = document.querySelector('.swal2-container');
+                        swalContainer.style.zIndex = '99999999999';
+                    }
+                })
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+});

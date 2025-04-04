@@ -28,16 +28,33 @@ body {
   font-size: 0.8rem;
   color: #333;
   background-color: #ffffff;
-  padding: 10px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 40px;
+  width: 45px;
+  height: 45px;
+  padding: 12px 0px;
   justify-content: center;
   align-items: center;
+  border: 3px solid red
 }
 
 /* Timer End */
+.levelName{
+  color: rgb(223, 155, 10);
+  padding: 5px 10px;
+  background-color: #fff;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.level_center{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
 
 .d-none {
   display: none;
@@ -62,9 +79,9 @@ body {
 
 .custom_button {
   background-color: #fbeee0;
-  border: 2px solid #422800;
+  border: 2px solid #c57e12;
   border-radius: 30px;
-  box-shadow: #422800 4px 4px 0 0;
+  box-shadow: #b37313 0px 3px 0 0;
   color: #422800;
   cursor: pointer;
   display: inline-block;
@@ -83,10 +100,6 @@ body {
   background-color: #fff;
 }
 
-.custom_button:active {
-  box-shadow: #422800 2px 2px 0 0;
-  transform: translate(2px, 2px);
-}
 
 
 
@@ -97,32 +110,12 @@ body {
   }
 }
 
-.scoreBoard {
-  position: absolute;
-  width: auto;
-  padding: 0.2rem 0.4rem;
-  font-size: 0.8rem;
-  background: #ffffff;
-  left: 0.5rem;
-  top: 0.5rem;
-  border-radius: 5px;
-}
-
-.win_score {
-  color: rgba(0, 128, 0, 0.747);
-  font-weight: bold;
-}
-
-.lose_score {
-  color: rgba(255, 0, 0, 0.712);
-  font-weight: bold;
-}
 
 .main_div {
   width: 350px;
   min-height: 90vh;
   background-image: 
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), 
+    linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8)), 
     url(Assets/Images/game-test-bg1.jpg);
   background-repeat: no-repeat;
   background-size: cover;

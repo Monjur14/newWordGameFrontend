@@ -110,12 +110,13 @@ function autoCheckValue() {
                 fillInputDiv()
                 incrementCorrectScore() 
                 win = localStorage.getItem('correctScore');
+                document.querySelector(".answer_box").classList.add("answer_box_correct")
                 winMSG.classList.remove("hidden")
                 if (win == 1) {
                     clearInterval(startTimer());
                     setTimeout(() => {
-                        window.location.href = "./level2.html"
-                    }, 700)
+                        window.location.href = "/pages/levels/level2/level2.html"
+                    }, 800)
                 } else {
                     fetchData()
                     setTimeout(() => {
@@ -127,14 +128,17 @@ function autoCheckValue() {
             } else {
                 timerCount = 2;
                 clearInterval(countdown);
-                fillInputDiv()
                 incrementIncorrectScore()
                 lose = localStorage.getItem('incorrectScore');
                 loseMSG.classList.remove("hidden")
+                document.querySelector(".answer_box").classList.add("answer_box_incorrect")
                 setTimeout(() => {
                     timer()
                     loseMSG.classList.add("hidden")
                 }, 500)
+                setTimeout(() => {
+                    window.location.href = "/pages/levels/level2/level2.html"
+                }, 800)
             }
         }, 1000)
     } else {
@@ -153,20 +157,6 @@ function incrementCorrectScore() {
 function incrementIncorrectScore() {
     let incorrectScore = parseInt(localStorage.getItem('incorrectScore')) || 0;
     incorrectScore += 1;
-    Swal.fire({
-        title: "Incorrect !",
-        text: "Try Again",
-        icon: "error",
-        willOpen: () => {
-            const swalContainer = document.querySelector('.swal2-container');
-            swalContainer.style.zIndex = '99999999999';
-        }
-    }).then((result) => {
-        // Check if the OK button was clicked
-        if (result.isConfirmed) {
-            getRandomThreeWord();
-        }
-    });
     localStorage.setItem('incorrectScore', incorrectScore.toString());
 }
 
@@ -247,13 +237,13 @@ playButton.addEventListener("click", () => {
     getRandomThreeWord();
     setTimeout(() => {
         gameMainContainer.classList.remove("hidden");
-    }, 1200);
+    }, 500);
     setTimeout(() => {
         timerElement.classList.remove("hidden")
         timerElement.classList.remove("flex")
         timer()
         startTimer();
-    }, 1700)
+    }, 1000)
 });
 
 //Reset Button

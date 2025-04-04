@@ -11,33 +11,24 @@
 <body>
     <div class="flex items-center justify-center"> 
         <div class="contain relative">
-            <div class="absolute top-0 right-4 inline-block">
-                <button class="menu" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))" aria-label="Main Menu">
-                    <svg width="100" height="100" viewBox="0 0 100 100">
-                      <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
-                      <path class="line line2" d="M 20,50 H 80" />
-                      <path class ="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
-                    </svg>
-                  </button>
-            </div>
             <div class="w-full flex flex-col items-center justify-center mt-20">
-                <img src="/Assets/Images/gift_Iphone-bn.png" alt="" class="w-[280px]">
-                <h1 class="text-white text-2xl text-center font-semibold mt-4">Iphone 16 জিততে এখনই কুইজ খেলুন।</h1>
-            </div>
+                <img src="/Assets/Images/gift_Iphone-bn.png" alt="" class="w-[200px]">
+                <h1 class="text-white text-lg text-center font-semibold mt-3 max-w-[250px] leading-tight">Iphone 16 জিততে এখনই কুইজ খেলুন।</h1>
+            </div> 
 
-            <div class="mt-12">
-                <h1 class="text-white text-lg font-semibold text-center">আপনার ফোন নাম্বার লিখুন</h1>
-                <div class="w-[90%] h-14 flex bg-white mx-auto rounded-full mt-4 overflow-hidden relative">
+            <div class="mt-8">
+                <h1 class="text-white text-sm font-semibold text-center">আপনার ফোন নাম্বার লিখুন</h1>
+                <div class="w-[85%] h-11 flex bg-white mx-auto rounded-full mt-2 overflow-hidden relative">
                     <div class="basis-4/12 h-full bg-[#c3d5e5] flex items-center justify-center pl-5">
-                        <img src="/Assets/Images/bdflag.png" alt="" class="w-10">
-                        <p class="text-xl pl-1">+88</p>
+                        <img src="/Assets/Images/bdflag.png" alt="" class="w-8">
+                        <p class="text-sm pl-1">+88</p>
                     </div>
                     <div class="basis-8/12 h-full pl-1">
-                        <input type="text" class="w-full h-full bg-transparent text-black text-xl pl-2 outline-none pl-2" placeholder="01XXXXXXXXX">
+                        <input type="text" class="w-full h-full bg-transparent text-black text-md pl-2 outline-none" placeholder="01XXXXXXXXX">
                     </div>
                 </div>
                 <div class="w-full flex flex-col justify-center items-center">
-                    <button class="w-[300px] h-12 bg-green-800 text-white text-lg font-semibold rounded-lg mt-4">সাবস্ক্রাইব / লগইন</button>
+                    <button class="w-[300px] h-11 bg-green-800 text-white text-md font-semibold rounded-lg mt-3" id="login_btn">সাবস্ক্রাইব / লগইন</button>
 
                     <h1 class="text-white mt-2">চার্জ ট্যাক্সসহ ২.৫০ টাকা/দিন</h1>
                 </div>
@@ -46,5 +37,8 @@
             </div>
         </div>
     </div>
+
+
+    <script src="script.js"></script>
 </body>
 </html>

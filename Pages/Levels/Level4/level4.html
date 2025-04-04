@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../style.css">
+    <title>Word Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="preload" href="level3.webp" as="image">
+</head>
+
+<body>
+    <div class="parent_div">
+        <div class="main_div">
+
+            <div class="timer-container">
+                <p id="timer" class="timer">30s</p>
+            </div>
+
+            <!-- Screen Three  -->
+            <div class="screen3">
+                <div class="level_center">
+                    <h2 class="levelName">Level 4</h2>
+                </div>
+        
+
+                <div class="game_main_container2 hidden">
+                    <div class="input_div">
+                        <div class="win_lose_msg">
+                            <span class="win_msg2 hidden">Word Matched</span>
+                            <span class="lose_msg2 hidden">Word Didn't Matched</span>
+                        </div>
+                        <div class="answer_box">
+                            <input type="text" class="give_input2 animate__animated animate__fadeInDown" value="" readonly>
+                            <input type="text" class="give_input2 animate__animated animate__fadeInUp" value="" readonly>
+                            <input type="text" class="give_input2 animate__animated animate__fadeInDown" value="" readonly>
+                            <input type="text" class="give_input2 animate__animated animate__fadeInUp" value="" readonly>
+                            <input type="text" class="give_input2 animate__animated animate__fadeInDown" value="" readonly>
+                            <input type="text" class="give_input2 animate__animated animate__fadeInDown" value="" readonly>
+                        </div>
+                    </div>
+
+                    <div class="random_textbox_container2 ">
+                        <div class="random_text_box_level2 level3_input">
+                            <!-- <input type="text" value="C" class="letter" style="transform: rotate(-33deg) translate(50px) rotate(5deg);" readonly>
+                            <input type="text" value="A" class="letter" style="transform: rotate(150deg) translate(50px) rotate(-180deg);" readonly>
+                            <input type="text" value="R" class="letter" style="transform: rotate(240deg) translate(50px) rotate(-270deg);" readonly>
+                            <input type="text" value="S" class="letter" style="transform: rotate(60deg) translate(50px) rotate(-90deg);" readonly> -->
+                        </div>
+                    </div>
+
+                    <div class="btn_container">
+                        <button class="reset_btn custom_button check_word_btn" onclick="reset_btn2()">
+                            <span>Reset</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Final Result Screen -->
+            <div class="result_screen3 hidden">
+                <div class="hidden win_container3">
+                    <div class="feedback_container animate__animated animate__bounceInDown">
+                        <h3>গেমটি খেলে আপনার কেমন লেগেছে মতামত দিন</h3>
+                        <form class="mt form_container" id="feedbackForm">
+                            <label>
+                                <input type="radio" name="feedback" value="ভালো লেগেছে">
+                                ভালো লেগেছে
+                            </label><br>
+                            <label >
+                                <input class="mt2" type="radio" name="feedback" value="ভালো লাগেনি">
+                                ভালো লাগেনি
+                            </label>
+                            <button type="submit" class="feedback_btn">মতামত দিন</button>
+                        </form>                    
+                    </div>
+                    <button class="custom_button2 next_btn next_btn2 play_again">Play Again</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="level4.js"></script>
+    <script src="sweetalert.js"></script>
+</body>
+
+</html>

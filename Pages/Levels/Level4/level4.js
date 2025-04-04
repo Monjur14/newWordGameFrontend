@@ -47,7 +47,7 @@ setTimeout(() => {
 //Fetch Data 1
 async function fetchData() {
     try {
-        const response = await fetch("http://localhost:5000/random-word?length=5");
+        const response = await fetch("http://localhost:5000/random-word?length=6");
         const data = await response.json();
         apidata = [data.word];
         console.log(apidata)
@@ -70,7 +70,7 @@ function timer() {
         if (timeLeft === 0) {
             timerCount--;
             if(timerCount === 0){
-                window.location.href = "index.html"
+                window.location.href = "/pages/levels/level1/level1.html"
             }
             clearInterval(countdown);
             randomTextBoxLevelTwo.innerText = ""
@@ -89,43 +89,43 @@ function autoCheckValue() {
     if (filledInputs.length === 5) {
         setTimeout(() => {
 
-            if (gameResult) {
+            if (apidata[0].toLowerCase() === filledWord) {
                 timerCount = 2
                 clearInterval(countdown);
                 fillInputDiv2()
                 incrementCorrectScore();
                 winMSG2.classList.remove("hidden")
 
-                if (localStorage.getItem('correctScore') == 6) {
+                if (localStorage.getItem('correctScore') == 3) {
                     clearInterval(startTimer());
-                    setTimeout(() => {
-                        let userTime = parseInt(localStorage.getItem('userTime'))
-                        const msisdnValue = sessionStorage.getItem("msisdn");
+                    // setTimeout(() => {
+                    //     let userTime = parseInt(localStorage.getItem('userTime'))
+                    //     const msisdnValue = sessionStorage.getItem("msisdn");
 
-                        const result = {
-                            msisdn: msisdnValue,
-                            gameTime: userTime
-                        }
+                    //     const result = {
+                    //         msisdn: msisdnValue,
+                    //         gameTime: userTime
+                    //     }
 
-                        var requestOptions = {
-                            method: 'GET',
-                            redirect: 'follow'
-                        };
+                    //     var requestOptions = {
+                    //         method: 'GET',
+                    //         redirect: 'follow'
+                    //     };
                           
-                        // fetch(`https://wordstar.shabox.mobi/ai/postscore?MSISDN=${msisdnValue}&Score=${userTime}`, requestOptions)
-                        // .then(response => response.text())
-                        // .then(result => console.log(result))
-                        // .catch(error => console.log('error', error));
+                    //     // fetch(`https://wordstar.shabox.mobi/ai/postscore?MSISDN=${msisdnValue}&Score=${userTime}`, requestOptions)
+                    //     // .then(response => response.text())
+                    //     // .then(result => console.log(result))
+                    //     // .catch(error => console.log('error', error));
 
-                        console.log(result)                      
-                        timers.classList.add("hidden")
-                        timeContainer.classList.add("hidden")
-                        screenThree.classList.add("hidden")
-                        resultContainer3.classList.add("flex")
-                        resultContainer3.classList.remove("hidden")
-                        winContainer3.classList.add("flex")
-                        winContainer3.classList.remove("hidden")
-                    }, 700)
+                    //     console.log(result)                      
+                    //     timers.classList.add("hidden")
+                    //     timeContainer.classList.add("hidden")
+                    //     screenThree.classList.add("hidden")
+                    //     resultContainer3.classList.add("flex")
+                    //     resultContainer3.classList.remove("hidden")
+                    //     winContainer3.classList.add("flex")
+                    //     winContainer3.classList.remove("hidden")
+                    // }, 700)
                 } else {
                     fetchData()
                     setTimeout(() => {
