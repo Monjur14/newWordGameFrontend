@@ -94,9 +94,10 @@ function autoCheckValue() {
                 clearInterval(countdown);
                 fillInputDiv2()
                 incrementCorrectScore();
+                document.querySelector(".answer_box").classList.add("answer_box_correct")
                 winMSG2.classList.remove("hidden")
 
-                if (localStorage.getItem('correctScore') == 3) {
+                if (localStorage.getItem('correctScore')) {
                     clearInterval(startTimer());
                     setTimeout(() => {
                         window.location.href = "/pages/levels/level4/level4.html"
@@ -114,14 +115,18 @@ function autoCheckValue() {
                 clearInterval(countdown);
                 fillInputDiv2()
                 incrementIncorrectScore();
+                document.querySelector(".answer_box").classList.add("answer_box_incorrect")
                 loseMSG2.classList.remove("hidden")
 
                 setTimeout(() => {
                     timer()
                     loseMSG2.classList.add("hidden")
                 }, 500)
+                setTimeout(() => {
+                    window.location.href = "/pages/levels/level4/level4.html"
+                }, 700)
             }
-        }, 1000)
+        }, 500)
     } else {
         return;
     }
@@ -138,19 +143,6 @@ function incrementCorrectScore() {
 function incrementIncorrectScore() {
     let incorrectScore = parseInt(localStorage.getItem('incorrectScore')) || 0;
     incorrectScore += 1;
-    Swal.fire({
-        title: "Incorrect !",
-        text: "Try Again",
-        icon: "error",
-        willOpen: () => {
-            const swalContainer = document.querySelector('.swal2-container');
-            swalContainer.style.zIndex = '99999999999';
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-           getRandomFiveWord();
-        }
-    });
     localStorage.setItem('incorrectScore', incorrectScore.toString());
 }
 
@@ -234,63 +226,3 @@ function reset_btn2() {
             timer()
         })
 }
-
-//Play Again Button
-playAgain.addEventListener("click", () => {
-    window.location.href = "./index.html"
-})
-
-//Feedback Submit
-document.getElementById('feedbackForm').addEventListener('submit', function (e) {
-    e.preventDefault(); 
-
-    const feedback = document.querySelector('input[name="feedback"]:checked');
-    if (!feedback) {
-        Swal.fire({
-            text: "দয়া করে একটি মতামত নির্বাচন করুন।",
-            icon: "error",
-            willOpen: () => {
-                const swalContainer = document.querySelector('.swal2-container');
-                swalContainer.style.zIndex = '99999999999';
-            }
-        })
-        return;
-    }
-
-    const feedbackValue = feedback.value;
-
-    const msisdnValue = sessionStorage.getItem("msisdn");
-
-    const MSISDN = msisdnValue;
-    const apiURL = `https://wordstar.shabox.mobi/ai/postfeedback?MSISDN=${MSISDN}&feedback=${encodeURIComponent(feedbackValue)}`;
-
-    fetch(apiURL)
-        .then(response => {
-            if (response.ok) {
-                Swal.fire({
-                    text: "আপনার মতামত সফলভাবে জমা দেওয়া হয়েছে।",
-                    icon: "success",
-                    willOpen: () => {
-                        const swalContainer = document.querySelector('.swal2-container');
-                        swalContainer.style.zIndex = '99999999999';
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = 'index.html';
-                    }
-                });
-            } else {
-                Swal.fire({
-                    text: "মতামত জমা দিতে সমস্যা হয়েছে। আবার চেষ্টা করুন।",
-                    icon: "error",
-                    willOpen: () => {
-                        const swalContainer = document.querySelector('.swal2-container');
-                        swalContainer.style.zIndex = '99999999999';
-                    }
-                })
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-});

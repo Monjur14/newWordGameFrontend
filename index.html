@@ -9,7 +9,7 @@
     <title>Home Page</title>
 </head>
 <body>
-    <div class="flex items-center justify-center"> 
+    <div class="w-full h-screen flex items-center justify-center"> 
         <div class="contain relative">
             <div class="w-full flex flex-col items-center justify-center mt-20">
                 <img src="/Assets/Images/gift_Iphone-bn.png" alt="" class="w-[200px]">
@@ -24,11 +24,11 @@
                         <p class="text-sm pl-1">+88</p>
                     </div>
                     <div class="basis-8/12 h-full pl-1">
-                        <input type="text" class="w-full h-full bg-transparent text-black text-md pl-2 outline-none" placeholder="01XXXXXXXXX">
+                        <input type="text" class="w-full h-full bg-transparent text-black text-md pl-2 outline-none" id="numberInput" placeholder="01XXXXXXXXX">
                     </div>
                 </div>
                 <div class="w-full flex flex-col justify-center items-center">
-                    <button class="w-[300px] h-11 bg-green-800 text-white text-md font-semibold rounded-lg mt-3" id="login_btn">সাবস্ক্রাইব / লগইন</button>
+                    <button class="w-[300px] h-11 bg-green-800 text-white text-md font-semibold rounded-lg mt-3" id="login_btn" onclick="submitPhone()">সাবস্ক্রাইব / লগইন</button>
 
                     <h1 class="text-white mt-2">চার্জ ট্যাক্সসহ ২.৫০ টাকা/দিন</h1>
                 </div>

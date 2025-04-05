@@ -130,8 +130,9 @@ function autoCheckValue() {
                 clearInterval(countdown);
                 incrementIncorrectScore()
                 lose = localStorage.getItem('incorrectScore');
-                loseMSG.classList.remove("hidden")
+                
                 document.querySelector(".answer_box").classList.add("answer_box_incorrect")
+                loseMSG.classList.remove("hidden")
                 setTimeout(() => {
                     timer()
                     loseMSG.classList.add("hidden")

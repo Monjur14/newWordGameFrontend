@@ -87,8 +87,9 @@ function autoCheckValue() {
                 clearInterval(countdown);
                 fillInputDiv2()
                 incrementCorrectScore();
+                document.querySelector(".answer_box").classList.add("answer_box_correct")
                 winMSG2.classList.remove("hidden")
-                if (localStorage.getItem('correctScore') == 2) {
+                if (localStorage.getItem('correctScore')) {
                     clearInterval(startTimer());
                     setTimeout(() => {
                         window.location.href = "/pages/levels/level3/level3.html"
@@ -105,6 +106,7 @@ function autoCheckValue() {
                 timerCount = 2
                 clearInterval(countdown);
                 incrementIncorrectScore();
+                document.querySelector(".answer_box").classList.add("answer_box_incorrect")
                 loseMSG2.classList.remove("hidden")
                 setTimeout(() => {
                     timer()

@@ -94,38 +94,33 @@ function autoCheckValue() {
                 clearInterval(countdown);
                 fillInputDiv2()
                 incrementCorrectScore();
+                document.querySelector(".answer_box").classList.add("answer_box_correct")
                 winMSG2.classList.remove("hidden")
 
-                if (localStorage.getItem('correctScore') == 3) {
+                if (localStorage.getItem('correctScore')) {
                     clearInterval(startTimer());
-                    // setTimeout(() => {
-                    //     let userTime = parseInt(localStorage.getItem('userTime'))
-                    //     const msisdnValue = sessionStorage.getItem("msisdn");
+                    setTimeout(() => {
+                        let userTime = parseInt(localStorage.getItem('userTime'))
+                        let msisdn = parseInt(localStorage.getItem('msisdn'));
+                        let correctScore = parseInt(localStorage.getItem('correctScore'))
+                        let incorrectScore = parseInt(localStorage.getItem('incorrectScore'))
 
-                    //     const result = {
-                    //         msisdn: msisdnValue,
-                    //         gameTime: userTime
-                    //     }
+                        console.log(userTime, msisdn, correctScore, incorrectScore)
 
-                    //     var requestOptions = {
-                    //         method: 'GET',
-                    //         redirect: 'follow'
-                    //     };
                           
-                    //     // fetch(`https://wordstar.shabox.mobi/ai/postscore?MSISDN=${msisdnValue}&Score=${userTime}`, requestOptions)
-                    //     // .then(response => response.text())
-                    //     // .then(result => console.log(result))
-                    //     // .catch(error => console.log('error', error));
-
-                    //     console.log(result)                      
-                    //     timers.classList.add("hidden")
-                    //     timeContainer.classList.add("hidden")
-                    //     screenThree.classList.add("hidden")
-                    //     resultContainer3.classList.add("flex")
-                    //     resultContainer3.classList.remove("hidden")
-                    //     winContainer3.classList.add("flex")
-                    //     winContainer3.classList.remove("hidden")
-                    // }, 700)
+                        // fetch(`https://wordstar.shabox.mobi/ai/postscore?MSISDN=${msisdnValue}&Score=${userTime}`, requestOptions)
+                        // .then(response => response.text())
+                        // .then(result => console.log(result))
+                        // .catch(error => console.log('error', error));
+                    
+                        timers.classList.add("hidden")
+                        timeContainer.classList.add("hidden")
+                        screenThree.classList.add("hidden")
+                        resultContainer3.classList.add("flex")
+                        resultContainer3.classList.remove("hidden")
+                        winContainer3.classList.add("flex")
+                        winContainer3.classList.remove("hidden")
+                    }, 700)
                 } else {
                     fetchData()
                     setTimeout(() => {
@@ -139,6 +134,7 @@ function autoCheckValue() {
                 clearInterval(countdown);
                 fillInputDiv2()
                 incrementIncorrectScore();
+                document.querySelector(".answer_box").classList.add("answer_box_incorrect")
                 loseMSG2.classList.remove("hidden")
 
                 setTimeout(() => {
@@ -163,19 +159,6 @@ function incrementCorrectScore() {
 function incrementIncorrectScore() {
     let incorrectScore = parseInt(localStorage.getItem('incorrectScore')) || 0;
     incorrectScore += 1;
-    Swal.fire({
-        title: "Incorrect !",
-        text: "Try Again",
-        icon: "error",
-        willOpen: () => {
-            const swalContainer = document.querySelector('.swal2-container');
-            swalContainer.style.zIndex = '99999999999';
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-           getRandomFiveWord();
-        }
-    });
     localStorage.setItem('incorrectScore', incorrectScore.toString());
 }
 
@@ -251,7 +234,7 @@ function shuffleWord(word) {
 function reset_btn2() {
     clearInterval(countdown);
     randomTextBoxLevelTwo.innerText = ""
-    fetch("http://localhost:5000/random-word?length=5")
+    fetch("http://localhost:5000/random-word?length=6")
         .then((res) => res.json())
         .then((data) => {
             apidata = [data.word]
@@ -262,60 +245,6 @@ function reset_btn2() {
 
 //Play Again Button
 playAgain.addEventListener("click", () => {
-    window.location.href = "./index.html"
+    window.location.href = "/pages/levels/level1/level1.html"
 })
 
-//Feedback Submit
-document.getElementById('feedbackForm').addEventListener('submit', function (e) {
-    e.preventDefault(); 
-
-    const feedback = document.querySelector('input[name="feedback"]:checked');
-    if (!feedback) {
-        Swal.fire({
-            text: "দয়া করে একটি মতামত নির্বাচন করুন।",
-            icon: "error",
-            willOpen: () => {
-                const swalContainer = document.querySelector('.swal2-container');
-                swalContainer.style.zIndex = '99999999999';
-            }
-        })
-        return;
-    }
-
-    const feedbackValue = feedback.value;
-
-    const msisdnValue = sessionStorage.getItem("msisdn");
-
-    const MSISDN = msisdnValue;
-    const apiURL = `https://wordstar.shabox.mobi/ai/postfeedback?MSISDN=${MSISDN}&feedback=${encodeURIComponent(feedbackValue)}`;
-
-    fetch(apiURL)
-        .then(response => {
-            if (response.ok) {
-                Swal.fire({
-                    text: "আপনার মতামত সফলভাবে জমা দেওয়া হয়েছে।",
-                    icon: "success",
-                    willOpen: () => {
-                        const swalContainer = document.querySelector('.swal2-container');
-                        swalContainer.style.zIndex = '99999999999';
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = 'index.html';
-                    }
-                });
-            } else {
-                Swal.fire({
-                    text: "মতামত জমা দিতে সমস্যা হয়েছে। আবার চেষ্টা করুন।",
-                    icon: "error",
-                    willOpen: () => {
-                        const swalContainer = document.querySelector('.swal2-container');
-                        swalContainer.style.zIndex = '99999999999';
-                    }
-                })
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-});
