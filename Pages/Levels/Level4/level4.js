@@ -101,17 +101,32 @@ function autoCheckValue() {
                     clearInterval(startTimer());
                     setTimeout(() => {
                         let userTime = parseInt(localStorage.getItem('userTime'))
-                        let msisdn = parseInt(localStorage.getItem('msisdn'));
+                        let msisdn = localStorage.getItem('msisdn')
                         let correctScore = parseInt(localStorage.getItem('correctScore'))
                         let incorrectScore = parseInt(localStorage.getItem('incorrectScore'))
 
                         console.log(userTime, msisdn, correctScore, incorrectScore)
 
                           
-                        // fetch(`https://wordstar.shabox.mobi/ai/postscore?MSISDN=${msisdnValue}&Score=${userTime}`, requestOptions)
-                        // .then(response => response.text())
-                        // .then(result => console.log(result))
-                        // .catch(error => console.log('error', error));
+                        fetch("http://localhost:5000/userscore", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                msisdn,
+                                correctScore,
+                                incorrectScore,
+                                userTime
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log("Score Saved:", data);
+                        })
+                        .catch(err => {
+                            console.error("Error saving score:", err);
+                        });
                     
                         timers.classList.add("hidden")
                         timeContainer.classList.add("hidden")
