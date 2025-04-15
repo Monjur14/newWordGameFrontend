@@ -21,7 +21,7 @@
 }
 .play_button{
   position: absolute;
-  bottom: 5rem;
+  bottom: -100px;
 }
 
 @keyframes playButtonAnimation {

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <title>আজকের লিডারবোর্ড</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .contain {
+      width: 350px;
+      min-height: 700px;
+      background-color: #fff;
+      margin: auto;
+      padding: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .contain {
+        min-width: 100%;
+        height: 100vh;
+        background-color: #fff;
+      }
+    }
+  </style>
+</head>
+<body class="text-gray-800 bg-gray-100">
+
+  <div class="contain">
+    <h1 class="text-xl font-bold text-center text-blue-600 mb-4">🏆 আজকের লিডারবোর্ড</h1>
+
+    <!-- User's Own Rank Section (hidden by default) -->
+    <div id="userRankCard" class="hidden bg-blue-100 text-blue-900 rounded-lg p-4 text-center mb-4">
+      <p class="text-lg font-medium">🎉 আপনার স্থান: <span id="userRank" class="font-bold text-blue-800"></span></p>
+      <p>✅ সঠিক: <span id="userCorrect" class="font-semibold"></span> ❌ ভুল: <span id="userIncorrect" class="font-semibold"></span> ⏱️ সময়: <span id="userTime" class="font-semibold"></span> সেকেন্ড</p>
+    </div>
+
+    <!-- Leaderboard Table -->
+    <div class="overflow-x-auto rounded-md">
+      <table class="w-full text-sm text-center border border-gray-300">
+        <thead>
+          <tr class="bg-blue-600 text-white">
+            <th class="p-2 border border-blue-700">র‍্যাঙ্ক</th>
+            <th class="p-2 border border-blue-700">ইউজার</th>
+            <th class="p-2 border border-blue-700">সঠিক</th>
+            <th class="p-2 border border-blue-700">ভুল</th>
+            <th class="p-2 border border-blue-700">সময়</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const msisdn = localStorage.getItem("msisdn");
+
+    function maskNumber(number) {
+      if (!number || number.length < 11) return number;
+      return number.slice(0, 4) + "****" + number.slice(8);
+    }
+
+    async function loadLeaderboard() {
+      try {
+        const res = await fetch("http://localhost:5000/public-leaderboard");
+        const data = await res.json();
+        const tbody = document.getElementById("leaderboardBody");
+        tbody.innerHTML = "";
+
+        let userFound = false;
+
+        data.forEach((user, index) => {
+          const masked = maskNumber(user.msisdn);
+          const row = document.createElement("tr");
+          row.className = index % 2 === 0 ? "bg-gray-100" : "bg-gray-200";
+          row.innerHTML = `
+            <td class="p-2 border border-gray-300">${index + 1}</td>
+            <td class="p-2 border border-gray-300">${masked}</td>
+            <td class="p-2 border border-gray-300">${user.correctScore}</td>
+            <td class="p-2 border border-gray-300">${user.incorrectScore}</td>
+            <td class="p-2 border border-gray-300">${user.userTime}</td>
+          `;
+          tbody.appendChild(row);
+
+          if (msisdn && user.msisdn === msisdn && !userFound) {
+            document.getElementById("userRankCard").classList.remove("hidden");
+            document.getElementById("userRank").textContent = index + 1;
+            document.getElementById("userCorrect").textContent = user.correctScore;
+            document.getElementById("userIncorrect").textContent = user.incorrectScore;
+            document.getElementById("userTime").textContent = user.userTime;
+            userFound = true;
+          }
+        });
+
+        if (!userFound && msisdn) {
+          document.getElementById("userRankCard").classList.add("hidden");
+        }
+
+      } catch (err) {
+        alert("লিডারবোর্ড লোড করা যায়নি!");
+        console.error(err);
+      }
+    }
+
+    loadLeaderboard();
+  </script>
+</body>
+</html>
