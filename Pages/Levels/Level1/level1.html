@@ -19,6 +19,10 @@
     <link rel="preload" href="Assets/Images/level1.webp" as="image" />
     <link rel="preload" href="Assets/Images/playbutton.png" as="image" />
     <link rel="stylesheet" href="sweetalert.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
   </head>
 
   <body>
@@ -30,43 +34,60 @@
 
         <!-- Home Screen -->
         <div class="screen1 flex screen1_container">
-          <img
-            src="../../../Assets/Images/game-test-logo3.png"
-            alt=""
-            class="game_logo animate__animated animate__zoomInDown"
-          />
+          <div
+            class="blur-wrapper w-[90%] flex flex-col items-center py-2 rounded-lg"
+          >
+            <div class="blur-background"></div>
+            <h1 class="text-xl font-semibold text-white mb-4 relative z-50">
+              TOURNAMENT
+            </h1>
+            <img
+              src="../../../Assets/Images/game-test-logo3.png"
+              alt=""
+              class="game_logo animate__animated animate__zoomInDown"
+            />
 
-          <div class="play_btn_container">
-            <button class="cssbuttons-io-button play_button">
-              Play Now
-              <div class="icon">
-                <svg
-                  height="24"
-                  width="24"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </div>
-            </button>
+            <div class="play_btn_container mt-7 mb-2">
+              <button class="cssbuttons-io-button play_button">
+                Play Now
+                <div class="icon">
+                  <svg
+                    height="24"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                      d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </div>
+              </button>
+            </div>
           </div>
 
-          <div class="w-full h-36 grid grid-cols-3 gap-2 px-2 place-content-center">
-            <a href="#" target="_blank"><div class="w-full h-20 bg-white"></div></a>
-            <a href="#" target="_blank"><div class="w-full h-20 bg-white"></div></a>
-            <a href="#" target="_blank"><div class="w-full h-20 bg-white"></div></a>
+          <div class="w-[90%]">
+            <h1 class="text-xl font-semibold mb-3 text-white text-center">Featured</h1>
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">Game 1</div>
+                <div class="swiper-slide">Game 2</div>
+                <div class="swiper-slide">Game 3</div>
+                <div class="swiper-slide">Game 4</div>
+                <div class="swiper-slide">Game 5</div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Level 1 Screen -->
         <div class="screen2 hidden">
           <div class="level_center">
-            <h2 class="levelName">Level 1</h2>
+            <h2 class="levelName font-semibold" style="font-size: 22px">
+              Level 1
+            </h2>
           </div>
 
           <div class="hidden game_main_container">
@@ -113,5 +134,17 @@
 
     <script src="level1.js"></script>
     <script src="sweetalert.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        autoplay: {
+          delay: 1000,
+          disableOnInteraction: false, 
+        },
+        loop: true, 
+      });
+    </script>
   </body>
 </html>

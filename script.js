@@ -1,19 +1,37 @@
-const loginButton = document.getElementById('login_btn');
-
-
+const loginButton = document.getElementById("login_btn");
 
 function submitPhone() {
-    const phone = document.getElementById('numberInput').value.trim();
+  const phone = document.getElementById("numberInput").value.trim();
+  const bdPhoneRegex = /^01[0-9]{9}$/;
 
-    // Regular expression for BD phone number starting with 01 and 11 digits total
-    const bdPhoneRegex = /^01[0-9]{9}$/;
+  if (!bdPhoneRegex.test(phone)) {
+    alert("Invalid phone number!");
+    return;
+  }
 
-    if (!bdPhoneRegex.test(phone)) {
-        alert("Invalid phone number!");
-        return;
-    }
+  // Save to localStorage
+  localStorage.setItem("msisdn", phone);
+  const msisdn = localStorage.getItem("msisdn");
 
-    // Save to localStorage
-    localStorage.setItem("msisdn", phone);
-    window.location.href = '/pages/levels/level1/level1.html';
-}
+  const referredBy = sessionStorage.getItem("referredBy");
+  if (referredBy) {
+    fetch("http://localhost:5000/save-referral", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        referrer_msisdn: referredBy,
+        referred_msisdn: msisdn,
+      }),
+    })
+      .then((res) => {
+        res.json();
+        window.location.href = "/pages/levels/level1/level1.html";
+      })
+      .then((data) => console.log("Referral saved:", data))
+      .catch((err) => {
+        console.error("Referral error:", err);
+      });
+  } else {
+    window.location.href = "/pages/levels/level1/level1.html";
+  }
+}    

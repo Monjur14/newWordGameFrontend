@@ -10,58 +10,117 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <title>Home Page</title>
     <style>
-      .bg-grad{
+      .bg-grad {
         background-image: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%);
       }
-
-      
     </style>
   </head>
   <body class="bg-gray-100">
     <div class="w-full h-screen flex items-center justify-center">
       <div class="contain relative overflow-hidden">
-        <img src="https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/What%20is%20a%20Hamburger%20Button.png?width=225&name=What%20is%20a%20Hamburger%20Button.png" alt="" class="absolute top-5 right-5 w-8" id="hamburger"/>
-        <img src="https://www.svgrepo.com/show/499592/close-x.svg" alt="" class="absolute top-4 right-4 w-9 hidden closeicon" />
-        <div class="px-4 py-6 flex flex-col gap-3 bg-white shadow-2xl rounded-lg absolute top-12 right-5 z-50 text-sm animate__animated animate__fadeInRight hidden" id="menu">
-            <p class="hover:underline cursor-pointer" id="openfaq">জিজ্ঞাসিত প্রশ্নাবলী</p>
-            <p class="hover:underline cursor-pointer" id="openmodal2">কিভাবে শুরু করবেন</p>
+        <img
+          src="https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/What%20is%20a%20Hamburger%20Button.png?width=225&name=What%20is%20a%20Hamburger%20Button.png"
+          alt=""
+          class="absolute top-5 right-5 w-8 cursor-pointer"
+          id="hamburger"
+        />
+        <img
+          src="https://www.svgrepo.com/show/499592/close-x.svg"
+          alt=""
+          class="absolute top-4 right-4 w-9 hidden closeicon"
+        />
+        <div
+          class="px-4 py-6 flex flex-col gap-3 bg-white shadow-2xl rounded-lg absolute top-12 right-5 z-50 text-sm animate__animated animate__fadeInRight hidden"
+          id="menu"
+        >
+          <a href="/index.html">
+            <p class="hover:underline cursor-pointer">
+              হোমে ফিরে যান 
+            </p>
+          </a>  
         </div>
 
         <div class="py-3 bg-grad mt-14">
-            <h3 class="text-center font-semibold">রেফার কোড ব্যবহারে ১০ টাকা ক্যাশ ইন</h3>
-            <p class="text-xs px-2 mt-1 text-justify">আপনার রেফার কোড ব্যবহার করে কেউ যদি সাবস্ক্রিপশন করে, তাহলে প্রতি সফল সাবস্ক্রিপশনে আপনি পেয়ে যাবেন ১০ টাকা ক্যাশ ইন । কারো শেয়ারকৃত রেফার কোড ব্যাবহার করে সাবস্ক্রিপশন করলে, ১ম সাবস্ক্রিপশনে আপনি পেয়ে যাবেন ১০ টাকার ক্যাশ ব্যাক ।</p>
+          <h3 class="text-center font-semibold">
+            রেফার কোড ব্যবহারে ১০ টাকা ক্যাশ ইন
+          </h3>
+          <p class="text-xs px-3 mt-1 text-justify">
+            আপনার রেফার কোড ব্যবহার করে কেউ যদি সাবস্ক্রিপশন করে, তাহলে প্রতি
+            সফল সাবস্ক্রিপশনে আপনি পেয়ে যাবেন ১০ টাকা ক্যাশ ইন । কারো শেয়ারকৃত
+            রেফার কোড ব্যাবহার করে সাবস্ক্রিপশন করলে, ১ম সাবস্ক্রিপশনে আপনি পেয়ে
+            যাবেন ১০ টাকার ক্যাশ ব্যাক ।
+          </p>
         </div>
 
-        <div class="border border-gray-300 flex items-center gap-2 justify-center w-[90%] mt-5 mx-auto bg-gray-200 pl-2 rounded-sm">
-            <p>+88</p>
-            <input type="text" placeholder="আপনার নাম্বার লিখুন" class="w-full h-10 px-2 bg-white ounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="userRefNum" />
+        <div
+          class="border border-gray-300 flex items-center gap-2 justify-center w-[90%] mt-5 mx-auto bg-gray-200 pl-2 rounded-sm" id="referralInputContainer"
+        >
+          <p>+88</p>
+          <input
+            type="text"
+            placeholder="আপনার নাম্বার লিখুন"
+            class="w-full h-10 px-2 bg-white ounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            id="userRefNum"
+          />
         </div>
+
+
+        <div class="w-full flex justify-center mt-2" id="refBtn">
+          <button
+            class="bg-blue-400 px-6 py-2 rounded-lg text-white"
+            onclick="generateReferralLink()"
+          >
+            Get Code
+          </button>
+        </div>
+
+        <div
+          class="border border-gray-300 flex items-center gap-2 justify-center w-[90%] mt-5 mx-auto bg-blue-400 rounded-sm pr-3 hidden" id="referralResultDiv"
+        >
+          <input
+            type="text"
+            placeholder="আপনার নাম্বার লিখুন"
+            class="w-full h-10 px-2 bg-white ounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            readonly
+            id="referralResult"
+          />
+          <button
+            onclick="copyLink()"
+            class="rounded-lg text-white pl-1 outline-none border-none"
+          >
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+
+        <div class="mt-10 hidden" id="shareDiv">
+          <h3 class="text-xl font-semibold text-center">Share Your Code</h3>
+          <div class="mt-2 flex justify-center gap-4">
+            <button onclick="shareOnFacebook()" class="bg-blue-600 text-white px-4 py-2 rounded">Facebook</button>
+            <button onclick="shareOnWhatsApp()" class="bg-green-500 text-white px-4 py-2 rounded">WhatsApp</button>
+            <button onclick="shareOnTelegram()" class="bg-blue-400 text-white px-4 py-2 rounded">Telegram</button>
+          </div>
+        </div>
+
+
+        <!-- <div class="mt-4 flex justify-center gap-4">
+          <button onclick="shareToWhatsAppFriend()" class="bg-green-600 text-white px-3 py-2 rounded">WhatsApp Inbox</button>
+          <button onclick="shareToMessenger()" class="bg-blue-600 text-white px-3 py-2 rounded">Messenger Inbox</button>
+          <button onclick="shareToTelegramUser()" class="bg-blue-400 text-white px-3 py-2 rounded">Telegram Inbox</button>
+        </div> -->
+
       </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-
-        const hamburger = document.getElementById("hamburger");
-        const closeIcon = document.querySelector(".closeicon");
-        const menu = document.getElementById("menu");
-
-        hamburger.addEventListener("click", () => {
-          hamburger.classList.add("hidden");
-          closeIcon.classList.remove("hidden");
-          menu.classList.remove("hidden");
-        });
-        closeIcon.addEventListener("click", () => {
-          hamburger.classList.remove("hidden");
-          closeIcon.classList.add("hidden");
-          menu.classList.add("hidden");
-        });
-
-    </script>
+    <script src="refarral.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
 </html>

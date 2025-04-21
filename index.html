@@ -14,9 +14,9 @@
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <title>Home Page</title>
     <style>
       .swiper {
@@ -43,46 +43,90 @@
   <body>
     <div class="w-full h-screen flex items-center justify-center">
       <div class="contain relative overflow-hidden">
-        <img src="/Assets/Images/hamburger.png" alt="" class="absolute top-5 right-5 w-8" id="hamburger"/>
-        <img src="/Assets/Images/closeicon.png" alt="" class="absolute top-5 right-6 w-6 hidden closeicon" />
-        <div class="px-4 py-6 flex flex-col gap-3 bg-white shadow-2xl rounded-lg absolute top-12 right-5 z-50 text-sm animate__animated animate__fadeInRight hidden" id="menu">
-            <p class="hover:underline cursor-pointer" id="openfaq">জিজ্ঞাসিত প্রশ্নাবলী</p>
-            <p class="hover:underline cursor-pointer" id="openmodal2">কিভাবে শুরু করবেন</p>
+        <img
+          src="/Assets/Images/hamburger.png"
+          alt=""
+          class="absolute top-5 right-5 w-8"
+          id="hamburger"
+        />
+        <img
+          src="/Assets/Images/closeicon.png"
+          alt=""
+          class="absolute top-5 right-6 w-6 hidden closeicon"
+        />
+        <div
+          class="px-4 py-6 flex flex-col gap-3 bg-white shadow-2xl rounded-lg absolute top-12 right-5 z-50 text-sm animate__animated animate__fadeInRight hidden"
+          id="menu"
+        >
+          <p class="hover:underline cursor-pointer" id="openfaq">
+            জিজ্ঞাসিত প্রশ্নাবলী
+          </p>
+          <p class="hover:underline cursor-pointer" id="openmodal2">
+            কিভাবে শুরু করবেন
+          </p>
         </div>
 
-        <div class="w-[95%] bg-white mx-auto px-3 pt-3 pb-5 z-[9999] absolute top-3 left-1/2 -translate-x-1/2 rounded-lg shadow-2xl animate__animated animate__fadeInDown hidden" id="faq">
-            <div class="flex items-center justify-between">
-                <h1>জিজ্ঞাসিত প্রশ্নাবলী</h1>
-                <img src="/Assets/Images/closemodal.png" alt="" class="w-8 cursor-pointer" id="closefaq">
-            </div>
-            <hr class="my-2 bg-black">
+        <div
+          class="w-[95%] bg-white mx-auto px-3 pt-3 pb-5 z-[9999] absolute top-3 left-1/2 -translate-x-1/2 rounded-lg shadow-2xl animate__animated animate__fadeInDown hidden"
+          id="faq"
+        >
+          <div class="flex items-center justify-between">
+            <h1>জিজ্ঞাসিত প্রশ্নাবলী</h1>
+            <img
+              src="/Assets/Images/closemodal.png"
+              alt=""
+              class="w-8 cursor-pointer"
+              id="closefaq"
+            />
+          </div>
+          <hr class="my-2 bg-black" />
 
-            <div class="mt-2">
-                <h1 class="font-semibold">এই কুইজ খেলে আপনি কি পাবেন?</h1>
-                <p class="text-xs">প্রতি মাসে আপনি যদি সর্বোচ্চ পয়েন্ট সংরহ করতে পারেন তাহলে পাবেন একটি IPhone 16</p>
-            </div>
-            
-            <div class="mt-5">
-                <h1 class="font-semibold">এই গেমটি খেলার জন্য কত টাকা লাগবে?</h1>
-                <p class="text-xs">প্রতিদিনের জন্য খরচ 2 টাকা+ভ্যাট+এসডি+এসসি এবং প্রতিবার 2 ক্রেডিট ক্রয়ে 2 টাকা+ভ্যাট+এসডি+এসসি দিয়ে অতিরিক্ত সীমাহীন গেম খেলতে পারবেন।</p>
-            </div>
+          <div class="mt-2">
+            <h1 class="font-semibold">এই কুইজ খেলে আপনি কি পাবেন?</h1>
+            <p class="text-xs">
+              প্রতি মাসে আপনি যদি সর্বোচ্চ পয়েন্ট সংরহ করতে পারেন তাহলে পাবেন
+              একটি IPhone 16
+            </p>
+          </div>
+
+          <div class="mt-5">
+            <h1 class="font-semibold">এই গেমটি খেলার জন্য কত টাকা লাগবে?</h1>
+            <p class="text-xs">
+              প্রতিদিনের জন্য খরচ 2 টাকা+ভ্যাট+এসডি+এসসি এবং প্রতিবার 2 ক্রেডিট
+              ক্রয়ে 2 টাকা+ভ্যাট+এসডি+এসসি দিয়ে অতিরিক্ত সীমাহীন গেম খেলতে
+              পারবেন।
+            </p>
+          </div>
         </div>
 
-        <div class="w-[95%] bg-white mx-auto px-3 pt-3 pb-5 z-[9999] absolute top-3 left-1/2 -translate-x-1/2 rounded-lg shadow-2xl animate__animated animate__fadeInDown hidden" id="modal2">
-            <div class="flex items-center justify-between">
-                <h1>কিভাবে শুরু করবেন?</h1>
-                <img src="/Assets/Images/closemodal.png" alt="" class="w-8 cursor-pointer" id="closemodal2">
-            </div>
-            <hr class="my-2 bg-black">
+        <div
+          class="w-[95%] bg-white mx-auto px-3 pt-3 pb-5 z-[9999] absolute top-3 left-1/2 -translate-x-1/2 rounded-lg shadow-2xl animate__animated animate__fadeInDown hidden"
+          id="modal2"
+        >
+          <div class="flex items-center justify-between">
+            <h1>কিভাবে শুরু করবেন?</h1>
+            <img
+              src="/Assets/Images/closemodal.png"
+              alt=""
+              class="w-8 cursor-pointer"
+              id="closemodal2"
+            />
+          </div>
+          <hr class="my-2 bg-black" />
 
-            <div class="mt-2">
-                <h1 class="font-semibold">কিভাবে শুরু করবেন?</h1>
-                <p class="text-xs">প্রথমে আপনার বাংলালিংক নাম্বার ব্যবহার করে সাবস্ক্রাইব করবেন।</p>
-                <p class="text-xs">ক্রেডিট ক্রয় করে সীমাহীন গেম খেলতে পারবেন।</p>
-                <p class="text-xs mt-5">এছাড়াও, সঠিক বা ভুল, প্রতিটি প্রশ্নের উত্তরের উপর আপনি পয়েন্ট পাবেন যা আপনাকে ড্র বা মাসিক পুরস্কারে অংশগ্রহণের অধিকার দেবে।</p>
-            </div>
+          <div class="mt-2">
+            <h1 class="font-semibold">কিভাবে শুরু করবেন?</h1>
+            <p class="text-xs">
+              প্রথমে আপনার বাংলালিংক নাম্বার ব্যবহার করে সাবস্ক্রাইব করবেন।
+            </p>
+            <p class="text-xs">ক্রেডিট ক্রয় করে সীমাহীন গেম খেলতে পারবেন।</p>
+            <p class="text-xs mt-5">
+              এছাড়াও, সঠিক বা ভুল, প্রতিটি প্রশ্নের উত্তরের উপর আপনি পয়েন্ট
+              পাবেন যা আপনাকে ড্র বা মাসিক পুরস্কারে অংশগ্রহণের অধিকার দেবে।
+            </p>
+          </div>
         </div>
-        
+
         <div class="w-full flex flex-col items-center justify-center mt-20">
           <div class="swiper mySwiper">
             <div class="swiper-wrapper">
@@ -148,22 +192,25 @@
             <!-- <h1 class="text-white mt-2">চার্জ ট্যাক্সসহ ২.৫০ টাকা/দিন</h1> -->
           </div>
 
-          <div class="mt-16 flex items-center justify-center gap-2 text-white text-base">
-            <h1 class="underline text-center cursor-pointer">
-              শর্তাবলী
-            </h1>
+          <div
+            class="mt-16 flex items-center justify-center gap-2 text-white text-base"
+          >
+            <h1 class="underline text-center cursor-pointer">শর্তাবলী</h1>
             <span>||</span>
-            <h1 class="underline text-center cursor-pointer">
-              লিডারবোর্ড
-            </h1>
+            <a href="/Pages/Leaderboard/leaderboard.html">
+              <h1 class="underline text-center cursor-pointer">লিডারবোর্ড</h1>
+            </a>
           </div>
 
           <div class="w-[90%] rounded-lg overflow-hidden mx-auto mt-5">
-            <a href="#">
-              <img src="https://ms.quizard.live/bkash-quiz-banner/promotional-banner/wordly/banner1.png" alt="" class="">
+            <a href="/Pages/Referrer/referral.html">
+              <img
+                src="https://ms.quizard.live/bkash-quiz-banner/promotional-banner/wordly/banner1.png"
+                alt=""
+                class=""
+              />
             </a>
           </div>
-          
         </div>
       </div>
     </div>
@@ -171,46 +218,74 @@
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      var swiper = new Swiper(".mySwiper", {});
+      var swiper = new Swiper(".mySwiper", {
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false, 
+        },
+        loop: true, 
+      });
 
-        const hamburger = document.getElementById("hamburger");
-        const closeIcon = document.querySelector(".closeicon");
-        const menu = document.getElementById("menu");
+      const hamburger = document.getElementById("hamburger");
+      const closeIcon = document.querySelector(".closeicon");
+      const menu = document.getElementById("menu");
 
-        hamburger.addEventListener("click", () => {
-          hamburger.classList.add("hidden");
-          closeIcon.classList.remove("hidden");
-          menu.classList.remove("hidden");
-        });
-        closeIcon.addEventListener("click", () => {
-          hamburger.classList.remove("hidden");
-          closeIcon.classList.add("hidden");
-          menu.classList.add("hidden");
-        });
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+        menu.classList.remove("hidden");
+      });
+      closeIcon.addEventListener("click", () => {
+        hamburger.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+        menu.classList.add("hidden");
+      });
 
-        document.getElementById("openfaq").addEventListener("click", () => {
-          menu.classList.add("hidden");
-          closeIcon.classList.add("hidden");
-          menu.classList.add("hidden");
-          hamburger.classList.remove("hidden");
-          document.getElementById("faq").classList.remove("hidden");
-        });
+      document.getElementById("openfaq").addEventListener("click", () => {
+        menu.classList.add("hidden");
+        closeIcon.classList.add("hidden");
+        menu.classList.add("hidden");
+        hamburger.classList.remove("hidden");
+        document.getElementById("faq").classList.remove("hidden");
+      });
 
-        document.getElementById("closefaq").addEventListener("click", () => {
-          document.getElementById("faq").classList.add("hidden");
-        });
+      document.getElementById("closefaq").addEventListener("click", () => {
+        document.getElementById("faq").classList.add("hidden");
+      });
 
-        document.getElementById("openmodal2").addEventListener("click", () => {
-          menu.classList.add("hidden");
-          closeIcon.classList.add("hidden");
-          menu.classList.add("hidden");
-          hamburger.classList.remove("hidden");
-          document.getElementById("modal2").classList.remove("hidden");
-        });
+      document.getElementById("openmodal2").addEventListener("click", () => {
+        menu.classList.add("hidden");
+        closeIcon.classList.add("hidden");
+        menu.classList.add("hidden");
+        hamburger.classList.remove("hidden");
+        document.getElementById("modal2").classList.remove("hidden");
+      });
 
-        document.getElementById("closemodal2").addEventListener("click", () => {
-          document.getElementById("modal2").classList.add("hidden");
-        });
+      document.getElementById("closemodal2").addEventListener("click", () => {
+        document.getElementById("modal2").classList.add("hidden");
+      });
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const ref = urlParams.get("ref");
+
+        if (ref) {
+          try {
+            const decodedMsisdn = atob(ref);
+
+            if (/^01[3-9]\d{8}$/.test(decodedMsisdn)) {
+              if (!sessionStorage.getItem("referredBy")) {
+                sessionStorage.setItem("referredBy", decodedMsisdn);
+                // console.log("Referral saved:", decodedMsisdn);
+              }
+            } else {
+              console.warn("Invalid MSISDN format");
+            }
+          } catch (e) {
+            console.error("Invalid referral code:", e);
+          }
+        }
+      });
     </script>
   </body>
 </html>
