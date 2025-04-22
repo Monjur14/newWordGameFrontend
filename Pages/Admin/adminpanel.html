@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
       body {
         font-family: "Segoe UI", sans-serif;
@@ -126,6 +127,11 @@
           <button onclick="addWord()">Add Word</button>
         </div>
 
+        <div class="form-group flex gap-3 items-center mt-4">
+          <input type="file" id="excelFile" accept=".xlsx, .xls, .csv" class="border border-gray-600 rounded-lg" />
+          <button onclick="uploadExcel()">Upload Excel</button>
+        </div>
+
         <hr class="w-full border-gray-700 mt-5" />
 
         <div class="filter-group w-full flex justify-between">
@@ -183,7 +189,7 @@
           id="toDate"
           class="border border-gray-600 rounded-md"
         />
-        <button onclick="fetchLeaderboard()">Get Data</button>
+        <button onclick="fetchLeaderboard()">Result</button>
         <button onclick="downloadLeaderboard()" class="bg-green-600">
           Download as Excel
         </button>
@@ -201,6 +207,24 @@
           </tr>
         </thead>
         <tbody id="leaderboardTable"></tbody>
+      </table>
+    </div>
+
+    <!-- Winners Report Section -->
+    <div class="dashboard mt">
+      <h2 class="text-xl font-bold mb-4">Winner Report</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>MSISDN</th>
+            <th>Correct Score</th>
+            <th>Incorrect Score</th>
+            <th>Time (s)</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="winnersTable"></tbody>
       </table>
     </div>
 
@@ -248,6 +272,53 @@
           alert("Failed to delete word");
         }
       }
+
+      async function uploadExcel() {
+  const fileInput = document.getElementById("excelFile");
+  const file = fileInput.files[0];
+
+  if (!file) {
+    alert("Please select an Excel file");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = async function (e) {
+    const data = new Uint8Array(e.target.result);
+    const workbook = XLSX.read(data, { type: "array" });
+
+    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+    const words = XLSX.utils.sheet_to_json(firstSheet, { header: 1 }).flat();
+
+    // Optional: filter out empty values
+    const cleanWords = words.filter(word => typeof word === "string" && word.trim() !== "");
+
+    if (cleanWords.length === 0) {
+      alert("No valid words found in file");
+      return;
+    }
+
+    // Send to backend
+    try {
+      const response = await fetch("http://localhost:5000/add-words", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ words: cleanWords }),
+      });
+
+      const result = await response.json();
+      alert(result.message || "Words uploaded successfully!");
+    } catch (err) {
+      console.error(err);
+      alert("Error uploading words");
+    }
+  };
+
+  reader.readAsArrayBuffer(file);
+}
+
 
       function renderTable() {
         const tbody = document.getElementById("wordsTable");
@@ -320,7 +391,7 @@
 
           const tbody = document.getElementById("leaderboardTable");
           tbody.innerHTML = "";
-          console.log(leaderboard)
+          console.log(leaderboard);
 
           leaderboard.forEach((row, index) => {
             const tr = document.createElement("tr");
@@ -357,6 +428,37 @@
       }
 
       fetchWords();
+
+      async function fetchWinners() {
+        try {
+          const res = await fetch("http://localhost:5000/winners");
+          const data = await res.json();
+
+          const tbody = document.getElementById("winnersTable");
+          tbody.innerHTML = "";
+
+          data.forEach((row, index) => {
+            const masked = row.msisdn.replace(
+              /^(\d{4})\d{4}(\d{3})$/,
+              "$1****$2"
+            );
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${masked}</td>
+        <td>${row.correctScore}</td>
+        <td>${row.incorrectScore}</td>
+        <td>${row.userTime}</td>
+        <td>${new Date(row.played_at).toLocaleDateString()}</td>
+      `;
+            tbody.appendChild(tr);
+          });
+        } catch (err) {
+          alert("Failed to fetch winners.");
+        }
+      }
+
+      fetchWinners();
     </script>
   </body>
 </html>
