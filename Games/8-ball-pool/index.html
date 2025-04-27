@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>8 Ball Pool</title>
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="stylesheet" type="text/css" href="game.css">
+	<link rel = "shortcut icon" href = "media/graphics/favicon.ico" />
+    <script type="text/javascript" src="game.js"></script>
+   
+
+
+<!-- AnalyticsCode -->
+
+<!-- APICode -->
+
+
+    <script type="text/javascript">
+       var fullscreenPatchButtonPlacements = { button1: { levelNumber: 1, x: 20, y: 465, width: 60, height: 60 },
+                                               button2: { levelNumber: 3, x: 7, y: 460, width: 50, height: 50 } };
+    </script>
+
+
+<!-- Google Tag Manager-->
+<script>
+dataLayer = [];
+dataLayer.push({
+'event': 'pageLoad',
+           	'publisher': 'PID',
+           	'productKey': '8BallPool'
+   	});
+console.log('pageLoad Triggered');
+</script>
+<!-- End Google Tag Manager -->
+
+</head>
+
+
+<body onload="setTimeout(window.scrollTo(0,1),1);">
+    
+    <div id="ajaxbar">
+        <div id="game"><canvas id="canvas"></canvas></div>
+
+        <div id="orientate"><img src="media/graphics/orientate/portrait.jpg" /></div>
+        <div id="play" class="play" onclick=""><img src="media/graphics/splash/mobile/cover-start.jpg" /></div>
+    </div>
+</body>
+</html>

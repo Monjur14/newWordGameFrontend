@@ -1,0 +1,97 @@
+var _STRINGS = {
+	"Ad":{
+		"Mobile":{
+			"Preroll":{
+				"ReadyIn":"The game is ready in ",
+				"Loading":"Your game is loading...",
+				"Close":"Close",
+			},
+			"Header":{
+				"ReadyIn":"The game is ready in ",
+				"Loading":"Your game is loading...",
+				"Close":"Close",
+			},
+			"End":{
+				"ReadyIn":"Advertisement ends in ",
+				"Loading":"Please wait ...",
+				"Close":"Close",
+			},								
+		},
+	},
+	
+	"Splash":{
+		"Loading":"Loading ...",	
+		"LogoLine1":"Some text here",
+		"LogoLine2":"powered by MarketJS",
+		"LogoLine3":"none",	
+		"TapToStart":"TAP TO START",
+	},
+
+	"Game":{
+		"SelectPlayer":"Select Player",
+		"Win":"You win!",
+		"Lose":"You lose!",
+		"Score":"Score",
+		"Time":"Time",
+		"StartBattle":"START",
+		"Play":"PLAY",
+		"MoreGames":"MORE GAMES",
+		"BeforeBattle":"WHEN READY, CLICK THE BUTTON BELOW.",
+		"EnemyNotif":"Enemy Attack!",
+		"PlayerNotif":"Player Turn",
+		"PlayerNotifDeck":"Choose your target square. Then, hit the red button to attack.",
+		"Win":"YOU WIN!",
+		"Lose":"YOU LOSE!",
+		"Player":"PLAYER",
+		"Computer":"COMPUTER",
+		"Shot":"SHOTS",
+		"Hit":"HITS",
+		"Miss":"MISSES",
+		"Settings":"SETTINGS",
+		"Paused":"PAUSED",
+		"Ok":"OK"
+	},
+	
+	"Tutorial":{
+		"tutText0":"Attention Sailor! Time to get cracking!",
+		"tutText1":"Battleship is a guessing game. You need a good strategy to win.",
+		"tutText2":"You have 5 different ships.",
+		"tutText3":"This ship needs 5 squares.",
+		"tutText4":"This ship needs 3 squares.",
+		"tutText5":"This ship needs 2 squares.",
+		"tutText6":"This ship needs 3 squares.",
+		"tutText7":"This ship needs 6 squares.",
+		"tutText8":"Deploy your first ship onto the battlefield.",
+		"tutText10":"Good! Now deploy your remaining ships.",
+		"tutText11":"You can't deploy your ship here. Find another square!",
+		"tutText13":"This notification means you have to wait for your turn.",
+		"tutText14":"Your turn to attack! You have 3 chances to attack each turn.",
+		"tutText19":"Now you're ready to play!",
+		"tutText20":"To win this game, you have to sink all enemy ships before the enemy sinks yours!",
+		"tutText21":"Good luck, Sailor!",
+		"Desktop":{
+			"tutText9":"Nice! To rotate the ship, click the button on the top left.",
+			"tutText12":"Now you can start the battle. Click 'START BATTLE' button.",
+			"tutText15":"Select a square from the battlefield.",
+			"tutText16":"To attack, click the big red button.",
+			"tutText17":"To change your target square, click at your new target square.",
+			"tutText18":"Now, click anywhere inside the battlefield.",
+			"tutNext":"Next",
+			"tutNext1":"Click here to dismiss.",
+		},
+		"Mobile":{
+			"tutText9":"Nice! To rotate the ship, tap the button on the top left.",
+			"tutText12":"Now you can start the battle. Tap the 'START BATTLE' button.",
+			"tutText15":"Select a square from the battlefield.",
+			"tutText16":"To attack, tap the big red button.",
+			"tutText17":"To change your target square, tap on your new target square.",
+			"tutText18":"Now tap anywhere inside the battlefield.",
+			"tutNext":"Next",
+			"tutNext1":"Tap here to dismiss",
+		},
+	},
+
+	"Results":{
+		"Title":"High score",
+	},	
+};
