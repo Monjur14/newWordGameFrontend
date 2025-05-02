@@ -44,7 +44,7 @@ function startTimer() {
 
 //Set the Timer
 function timer() {
-    let timeLeft = 15;
+    let timeLeft = 10;
     countdown = setInterval(() => {
         setTimeout(() => {
             timeLeft--;

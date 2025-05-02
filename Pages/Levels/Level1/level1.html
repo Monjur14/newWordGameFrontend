@@ -29,16 +29,90 @@
     <div class="parent_div">
       <div class="main_div">
         <div class="timer-container">
-          <p id="timer" class="hidden">15s</p>
+          <p id="timer" class="hidden">10s</p>
         </div>
 
         <!-- Home Screen -->
         <div class="screen1 flex screen1_container">
+          <img
+            src="/Assets/Images/hamburger.png"
+            alt=""
+            class="absolute top-5 right-5 w-8"
+            id="hamburger"
+          />
+          <img
+            src="/Assets/Images/closeicon.png"
+            alt=""
+            class="absolute top-5 right-6 w-6 hidden closeicon"
+          />
+          <div
+            class="px-4 py-6 flex flex-col gap-3 bg-white shadow-2xl rounded-lg absolute top-12 right-5 z-50 text-sm animate__animated animate__fadeInRight hidden z-[999]"
+            id="menu"
+          >
+            <p class="hover:underline cursor-pointer">
+              <a href="/index.html">হোমে ফিরে যান</a>
+            </p>
+            <p class="hover:underline cursor-pointer" id="openmodal2">
+              বিকাশ নাম্বার যোগ করুন
+            </p>
+          </div>
+
+          <div
+            class="w-[95%] bg-white mx-auto px-3 pt-3 pb-5 z-[9999] absolute top-3 left-1/2 -translate-x-1/2 rounded-lg shadow-2xl animate__animated animate__fadeInDown hidden"
+            id="modal2"
+          >
+            <div class="flex items-center justify-between">
+              <h1></h1>
+              <img
+                src="/Assets/Images/closemodal.png"
+                alt=""
+                class="w-8 cursor-pointer"
+                id="closemodal2"
+              />
+            </div>
+            <hr class="my-2 bg-black" />
+
+            <div class="mt-2">
+              <h1 class="font-semibold">
+                পুরস্কার জিততে আপনার বিকাশ নাম্বার যোগ করুন
+              </h1>
+
+              <div
+                class="w-[100%] h-11 flex bg-white mx-auto rounded-full mt-2 overflow-hidden relative border border-gray-300 shadow-sm"
+              >
+                <div
+                  class="basis-4/12 h-full bg-[#c3d5e5] flex items-center justify-center pl-5"
+                >
+                  <img src="/Assets/Images/bdflag.png" alt="" class="w-8" />
+                  <p class="text-sm pl-1">+88</p>
+                </div>
+                <div class="basis-8/12 h-full pl-1">
+                  <input
+                    type="text"
+                    class="w-full h-full bg-transparent text-black text-md pl-2 outline-none"
+                    id="inputBkashNumber"
+                    placeholder="01XXXXXXXXX"
+                  />
+                </div>
+              </div>
+
+              <div class="w-full flex flex-col justify-center items-center">
+                <button
+                  class="w-[300px] h-11 bg-green-800 text-white text-md font-semibold rounded-lg mt-3"
+                  id=""
+                  onclick="addBkashNumber()"
+                >
+                  যোগ করুন
+                </button>
+              </div>
+            </div>
+          </div>
+
           <div
             class="blur-wrapper w-[90%] flex flex-col items-center py-2 rounded-lg"
           >
             <div class="blur-background"></div>
-            <h1 class="text-xl font-semibold text-white mb-4 relative z-50">
+            <h1 class="text-xl font-semibold text-white mb-4 relative z-20">
               TOURNAMENT
             </h1>
             <img
@@ -68,88 +142,161 @@
             </div>
           </div>
 
-          <div class="w-[90%]">
-            <h1 class="text-xl font-semibold mb-3 text-white text-center">Featured</h1>
+          <div class="w-[90%] mb-52">
+            <h1 class="text-xl font-semibold mb-3 text-white text-center">
+              Featured
+            </h1>
             <div class="swiper mySwiper">
               <div class="swiper-wrapper">
                 <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/8-ball-pool" target="_blank">
-                    <img src="/Games/8-ball-pool/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/8-ball-pool/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
                 <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/battleships-ready-go" target="_blank">
-                    <img src="/Games/battleships-ready-go/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/battleships-ready-go/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/block-wood-puzzle" target="_blank">
-                    <img src="/Games/block-wood-puzzle/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/block-wood-puzzle/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/casual-chess" target="_blank">
-                    <img src="/Games/casual-chess/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/casual-chess/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/classic-solitaire" target="_blank">
-                    <img src="/Games/classic-solitaire/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/classic-solitaire/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/crossword-casual" target="_blank">
-                    <img src="/Games/crossword-casual/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/crossword-casual/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/didi-and-friends-guess-what" target="_blank">
-                    <img src="/Games/didi-and-friends-guess-what/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/didi-and-friends-guess-what/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/happy-slushie" target="_blank">
-                    <img src="/Games/happy-slushie/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/happy-slushie/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/math-trivia-live" target="_blank">
-                    <img src="/Games/math-trivia-live/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/math-trivia-live/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
-                  <a href="/Games/oddbods-monster-truck-challenge" target="_blank">
-                    <img src="/Games/oddbods-monster-truck-challenge/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                <div class="swiper-slide rounded-md overflow-hidden">
+                  <a
+                    href="/Games/oddbods-monster-truck-challenge"
+                    target="_blank"
+                  >
+                    <img
+                      src="/Games/oddbods-monster-truck-challenge/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/power-badminton" target="_blank">
-                    <img src="/Games/power-badminton/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/power-badminton/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/rise-higher" target="_blank">
-                    <img src="/Games/rise-higher/180x120.png" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/rise-higher/180x120.png"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/smart-soccer" target="_blank">
-                    <img src="/Games/smart-soccer/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/smart-soccer/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/spore-hunter" target="_blank">
-                    <img src="/Games/spore-hunter/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/spore-hunter/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
-                <div class="swiper-slide  rounded-md overflow-hidden">
+                <div class="swiper-slide rounded-md overflow-hidden">
                   <a href="/Games/stickman-swing" target="_blank">
-                    <img src="/Games/stickman-swing/180x120.jpg" alt="" class="object-cover cursor-pointer">
+                    <img
+                      src="/Games/stickman-swing/180x120.jpg"
+                      alt=""
+                      class="object-cover cursor-pointer"
+                    />
                   </a>
                 </div>
               </div>
             </div>
-          </div>
+
+            <!-- ADS -->
+            <div class="w-[94%] h-32 absolute bottom-10 left-1/2 -translate-x-1/2">
+              <div class="swiper myAdsSwiper h-full">
+                <div class="swiper-wrapper" id="adsSwiperWrapper">
+                  <!-- Ad slides will be injected here -->
+                </div>
+              </div>
+            </div>
         </div>
 
         <!-- Level 1 Screen -->
@@ -211,10 +358,114 @@
         spaceBetween: 10,
         autoplay: {
           delay: 1000,
-          disableOnInteraction: false, 
+          disableOnInteraction: false,
         },
-        loop: true, 
+        loop: true,
       });
+
+      const hamburger = document.getElementById("hamburger");
+      const closeIcon = document.querySelector(".closeicon");
+      const menu = document.getElementById("menu");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+        menu.classList.remove("hidden");
+      });
+      closeIcon.addEventListener("click", () => {
+        hamburger.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+        menu.classList.add("hidden");
+      });
+
+      document.getElementById("openmodal2").addEventListener("click", () => {
+        menu.classList.add("hidden");
+        closeIcon.classList.add("hidden");
+        hamburger.classList.remove("hidden");
+        document.getElementById("modal2").classList.remove("hidden");
+      });
+
+      document.getElementById("closemodal2").addEventListener("click", () => {
+        document.getElementById("modal2").classList.add("hidden");
+      });
+
+
+      // Load active ads from the server and display them in the swiper
+      async function loadActiveAds() {
+    const res = await fetch("http://localhost:5000/ads");
+    const ads = await res.json();
+    const activeAds = ads.filter(ad => ad.status === "active");
+
+    const wrapper = document.getElementById("adsSwiperWrapper");
+    wrapper.innerHTML = "";
+
+    activeAds.forEach(ad => {
+      const slide = document.createElement("div");
+      slide.className = "swiper-slide flex justify-center items-center";
+
+      slide.innerHTML = `
+        <a href="${ad.redirect_link}" target="_blank">
+          <img src="http://localhost:5000${ad.image_url}" 
+               class="h-32 object-contain rounded-md" 
+               alt="Ad Image" />
+        </a>
+      `;
+
+      wrapper.appendChild(slide);
+    });
+
+    new Swiper(".myAdsSwiper", {
+      loop: true,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+    });
+  }
+
+  loadActiveAds();
+
+      const msisdn = localStorage.getItem("msisdn");
+
+      // On page load: check if bkash number already exists
+      async function checkBkashNumber() {
+        if (!msisdn) return;
+
+        const res = await fetch(`http://localhost:5000/get-bkash/${msisdn}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.bkash_number) {
+            document.getElementById("inputBkashNumber").value =
+              data.bkash_number;
+          }
+        }
+      }
+
+      // Add/Update bKash number
+      async function addBkashNumber() {
+        const bkash = document.getElementById("inputBkashNumber").value.trim();
+
+        if (!bkash.match(/^01[3-9]\d{8}$/)) {
+          alert("Invalid bKash number!");
+          return;
+        }
+
+        const res = await fetch("http://localhost:5000/update-bkash", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ msisdn, bkash_number: bkash }),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert("bKash number added successfully!");
+        } else {
+          alert(data.error || "Something went wrong");
+        }
+      }
+
+      // Run on load
+      window.onload = checkBkashNumber;
     </script>
   </body>
 </html>

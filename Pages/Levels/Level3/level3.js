@@ -59,7 +59,7 @@ fetchData();
 
 //Timer Function
 function timer() {
-    let timeLeft = 30;
+    let timeLeft = 20;
     countdown = setInterval(() => {
         setTimeout(() => {
             timeLeft--;
