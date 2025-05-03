@@ -246,7 +246,7 @@
     </div>
 
     <!-- Ads Management Section -->
-    <div>
+    <div id="ads_section" class="hidden">
       <form
         id="adForm"
         enctype="multipart/form-data"
@@ -295,16 +295,11 @@
             <option value="inactive">Inactive</option>
           </select>
         </div>
-        <img
-          src="http://localhost:5000/uploads/1746224395978.jpg"
-          alt="Ad"
-          class="w-20 rounded"
-        />
         <button
           type="submit"
           class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition duration-200"
         >
-          Upload Ad
+          Upload
         </button>
       </form>
 
@@ -323,6 +318,25 @@
           <tbody id="adsTable"></tbody>
         </table>
       </div>
+    </div>
+
+    <div id="referralManagement" class="dashboard mt hidden">
+      <h2 class="text-xl font-bold mb-4">Referral Management</h2>
+
+      <table class="w-full border">
+        <thead>
+          <tr>
+            <th class="p-2 border">MSISDN</th>
+            <th class="p-2 border">Total Referrals</th>
+            <th class="p-2 border">Referred Numbers</th>
+            <th class="p-2 border">Total Earned</th>
+            <th class="p-2 border">Paid</th>
+            <th class="p-2 border">Pending</th>
+            <th class="p-2 border">Pay Now</th>
+          </tr>
+        </thead>
+        <tbody id="referralTable"></tbody>
+      </table>
     </div>
 
     <div>
@@ -353,7 +367,7 @@
         <p class="hover:underline cursor-pointer" id="adsManagement">
           Ads ম্যানেজমেন্ট
         </p>
-        <p class="hover:underline cursor-pointer">রেফারাল ম্যানেজমেন্ট</p>
+        <p class="hover:underline cursor-pointer" id="showReferralManagement">রেফারাল ম্যানেজমেন্ট</p>
       </div>
     </div>
 
@@ -377,6 +391,8 @@
         .querySelector("#showLeaderboardManagement")
         .addEventListener("click", () => {
           document.getElementById("wordManagement").classList.add("hidden");
+          document.getElementById("ads_section").classList.add("hidden");
+          document.getElementById("referralManagement").classList.add("hidden");
           document
             .getElementById("leaderboardManagement")
             .classList.remove("hidden");
@@ -387,8 +403,29 @@
           document
             .getElementById("leaderboardManagement")
             .classList.add("hidden");
+          document.getElementById("ads_section").classList.add("hidden");
+          document.getElementById("referralManagement").classList.add("hidden");
           document.getElementById("wordManagement").classList.remove("hidden");
         });
+
+      document.querySelector("#adsManagement").addEventListener("click", () => {
+        document.getElementById("wordManagement").classList.add("hidden");
+        document
+          .getElementById("leaderboardManagement")
+          .classList.add("hidden");
+          document.getElementById("referralManagement").classList.add("hidden");
+        document.getElementById("ads_section").classList.remove("hidden");
+      });
+
+      document.getElementById("showReferralManagement").addEventListener("click", () => {
+        document.getElementById("wordManagement").classList.add("hidden");
+        document
+          .getElementById("leaderboardManagement")
+          .classList.add("hidden");
+        document.getElementById("ads_section").classList.add("hidden");
+        document.getElementById("referralManagement").classList.remove("hidden");
+      });
+
 
       document
         .getElementById("adForm")
@@ -650,10 +687,10 @@
           const row = document.createElement("tr");
 
           row.innerHTML = `
-        <td class="p-3 border-b">
+        <td class="p-3 border-b flex justify-center items-center">
           <img src="http://localhost:5000${
             ad.image_url
-          }" alt="Ad" class="w-20 rounded" />
+          }" alt="Ad" class="w-24 rounded" />
         </td>
         <td class="p-3 border-b text-blue-600 break-words">
           ${ad.redirect_link}
@@ -709,6 +746,85 @@
 
       // On page load, fetch the ads
       fetchAds();
+
+      async function fetchReferralSummary() {
+        const res = await fetch("http://localhost:5000/referrals/summary");
+        const data = await res.json();
+
+        console.log(data); // For debugging
+
+        const tbody = document.getElementById("referralTable");
+        tbody.innerHTML = "";
+
+        data.forEach((item) => {
+          const tr = document.createElement("tr");
+
+          tr.innerHTML = `
+      <td class="border p-2">${item.referrer_msisdn}</td>
+      <td class="border p-2 text-center">${item.total_referrals}</td>
+      <td class="border p-2">
+        <select class="w-full border rounded px-2 py-1 text-sm" id="referred-${
+          item.referrer_msisdn
+        }">
+          <option value="">See all Referred Numbers</option>
+          ${item.referred_numbers
+            .map((number) => `<option value="${number}">${number}</option>`)
+            .join("")}
+        </select>
+      </td>
+      <td class="border p-2 text-center">${item.total_earn}</td>
+      <td class="border p-2 text-center">${item.total_paid}</td>
+      <td class="border p-2 text-center text-red-600 font-semibold">${
+        item.pending_amount
+      }</td>
+      <td class="border p-2 text-center">
+        <input type="number" placeholder="৳" class="w-20 border rounded px-1 text-sm" min="1" max="${
+          item.pending_amount
+        }" id="amount-${item.referrer_msisdn}" />
+        <button class="ml-1 px-2 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
+          onclick="payReferral('${item.referrer_msisdn}', ${
+            item.pending_amount
+          })">
+          Pay
+        </button>
+      </td>
+    `;
+
+          tbody.appendChild(tr);
+        });
+      }
+
+      async function payReferral(msisdn, maxAmount) {
+        const input = document.getElementById(`amount-${msisdn}`);
+        const amount = parseInt(input.value);
+
+        if (!amount || amount <= 0) {
+          return alert("Enter a valid amount");
+        }
+
+        if (amount > maxAmount) {
+          return alert("Amount exceeds pending balance");
+        }
+
+        const res = await fetch("http://localhost:5000/referrals/pay", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ referrer_msisdn: msisdn, amount }),
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+          alert("Payment marked successfully");
+          // Update the UI with the new pending amount
+          fetchReferralSummary(); // Reload the summary to reflect updated amounts
+        } else {
+          alert("Error: " + result.error);
+        }
+      }
+
+      // Call on page load or when this section is shown
+      fetchReferralSummary();
     </script>
   </body>
 </html>

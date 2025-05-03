@@ -14,7 +14,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
 
     <title>Home Page</title>
     <style>
@@ -42,10 +46,8 @@
           id="menu"
         >
           <a href="/index.html">
-            <p class="hover:underline cursor-pointer">
-              হোমে ফিরে যান 
-            </p>
-          </a>  
+            <p class="hover:underline cursor-pointer">হোমে ফিরে যান</p>
+          </a>
         </div>
 
         <div class="py-3 bg-grad mt-14">
@@ -61,7 +63,8 @@
         </div>
 
         <div
-          class="border border-gray-300 flex items-center gap-2 justify-center w-[90%] mt-5 mx-auto bg-gray-200 pl-2 rounded-sm" id="referralInputContainer"
+          class="border border-gray-300 flex items-center gap-2 justify-center w-[90%] mt-5 mx-auto bg-gray-200 pl-2 rounded-sm"
+          id="referralInputContainer"
         >
           <p>+88</p>
           <input
@@ -71,7 +74,6 @@
             id="userRefNum"
           />
         </div>
-
 
         <div class="w-full flex justify-center mt-2" id="refBtn">
           <button
@@ -83,7 +85,8 @@
         </div>
 
         <div
-          class="border border-gray-300 flex items-center gap-2 justify-center w-[90%] mt-5 mx-auto bg-blue-400 rounded-sm pr-3 hidden" id="referralResultDiv"
+          class="border border-gray-300 flex items-center gap-2 justify-center w-[90%] mt-5 mx-auto bg-blue-400 rounded-sm pr-3 hidden"
+          id="referralResultDiv"
         >
           <input
             type="text"
@@ -103,24 +106,156 @@
         <div class="mt-10 hidden" id="shareDiv">
           <h3 class="text-xl font-semibold text-center">Share Your Code</h3>
           <div class="mt-2 flex justify-center gap-4">
-            <button onclick="shareOnFacebook()" class="bg-blue-600 text-white px-4 py-2 rounded">Facebook</button>
-            <button onclick="shareOnWhatsApp()" class="bg-green-500 text-white px-4 py-2 rounded">WhatsApp</button>
-            <button onclick="shareOnTelegram()" class="bg-blue-400 text-white px-4 py-2 rounded">Telegram</button>
+            <button
+              onclick="shareOnFacebook()"
+              class="bg-blue-600 text-white px-4 py-2 rounded"
+            >
+              Facebook
+            </button>
+            <button
+              onclick="shareOnWhatsApp()"
+              class="bg-green-500 text-white px-4 py-2 rounded"
+            >
+              WhatsApp
+            </button>
+            <button
+              onclick="shareOnTelegram()"
+              class="bg-blue-400 text-white px-4 py-2 rounded"
+            >
+              Telegram
+            </button>
           </div>
         </div>
 
+        <div class="mt-10 px-4 w-full hidden" id="referralStatsSection">
+          <div
+            class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 rounded-xl shadow-xl p-1"
+          >
+            <div class="bg-white rounded-xl p-5">
+              <h3 class="text-xl font-bold text-center text-gray-800 mb-4">
+                আপনার রেফার তথ্য
+              </h3>
 
-        <!-- <div class="mt-4 flex justify-center gap-4">
-          <button onclick="shareToWhatsAppFriend()" class="bg-green-600 text-white px-3 py-2 rounded">WhatsApp Inbox</button>
-          <button onclick="shareToMessenger()" class="bg-blue-600 text-white px-3 py-2 rounded">Messenger Inbox</button>
-          <button onclick="shareToTelegramUser()" class="bg-blue-400 text-white px-3 py-2 rounded">Telegram Inbox</button>
-        </div> -->
+              <div class="grid gap-3 text-gray-700">
+                <p class="text-md">
+                  <strong>মোট রেফার:</strong>
+                  <span id="totalReferrals">-</span> জন
+                </p>
 
+                <details class="bg-gray-100 rounded p-3">
+                  <summary class="cursor-pointer text-blue-600 font-semibold">
+                    রেফার নম্বরসমূহ দেখুন
+                  </summary>
+                  <ul
+                    class="list-disc pl-6 pt-2 text-sm text-gray-800"
+                    id="referredNumbersList"
+                  >
+                    <!-- Filled by JS -->
+                  </ul>
+                </details>
+
+                <p class="text-md">
+                  <strong>মোট আয়:</strong>
+                  <span class="text-green-600 font-semibold" id="totalEarn"
+                    >-</span
+                  >
+                  টাকা
+                </p>
+
+                <p class="text-md">
+                  <strong>পরিশোধ:</strong>
+                  <span class="text-blue-600 font-semibold" id="totalPaid"
+                    >-</span
+                  >
+                  টাকা
+                </p>
+
+                <p class="text-md">
+                  <strong>বাকি:</strong>
+                  <span class="text-red-600 font-semibold" id="pendingAmount"
+                    >-</span
+                  >
+                  টাকা
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <script src="script.js"></script>
     <script src="refarral.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+
+    <script>
+      function decodeReferralCode(base64Str) {
+        try {
+          return atob(base64Str); // browser's built-in base64 decode
+        } catch (err) {
+          console.error("Failed to decode referral code:", err);
+          return null;
+        }
+      }
+
+      async function fetchReferralStats(msisdn) {
+        try {
+          const res = await fetch("http://localhost:5000/referrals/summary");
+          const data = await res.json();
+
+          const userData = data.find((d) => d.referrer_msisdn === msisdn);
+
+          if (userData) {
+            document.getElementById("totalReferrals").textContent =
+              userData.total_referrals;
+
+            const referredList = document.getElementById("referredNumbersList");
+            referredList.innerHTML = ""; // clear old values
+            userData.referred_numbers.forEach((num) => {
+              const li = document.createElement("li");
+              li.textContent = num;
+              referredList.appendChild(li);
+            });
+
+            document.getElementById("totalEarn").textContent =
+              userData.total_earn;
+            document.getElementById("totalPaid").textContent =
+              userData.total_paid;
+            document.getElementById("pendingAmount").textContent =
+              userData.pending_amount;
+
+            document
+              .getElementById("referralStatsSection")
+              .classList.remove("hidden");
+          } else {
+            Toastify({
+              text: "রেফার তথ্য পাওয়া যায়নি",
+              duration: 3000,
+              gravity: "top",
+              position: "center",
+              backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+            }).showToast();
+          }
+        } catch (err) {
+          console.error("Error fetching stats:", err);
+        }
+      }
+
+      window.onload = () => {
+        const storedLink = localStorage.getItem("myReferralLink");
+
+        if (storedLink && storedLink.includes("?ref=")) {
+          const encoded = new URL(storedLink).searchParams.get("ref");
+          const msisdn = decodeReferralCode(encoded);
+
+          if (msisdn && msisdn.match(/^01[3-9]\d{8}$/)) {
+            fetchReferralStats(msisdn);
+          }
+        }
+      };
+    </script>
   </body>
 </html>
