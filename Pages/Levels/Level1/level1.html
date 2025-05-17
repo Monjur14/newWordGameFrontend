@@ -290,14 +290,16 @@
             </div>
 
             <!-- ADS -->
-            <div class="w-[94%] h-32 absolute bottom-10 left-1/2 -translate-x-1/2">
+            <div class="w-[94%] h-28 absolute bottom-10 left-1/2 -translate-x-1/2 rounded-lg overflow-hidden">
               <div class="swiper myAdsSwiper h-full">
                 <div class="swiper-wrapper" id="adsSwiperWrapper">
-                  <!-- Ad slides will be injected here -->
+                  
                 </div>
               </div>
             </div>
+          </div>
         </div>
+        <!-- End of Home Screen -->  
 
         <!-- Level 1 Screen -->
         <div class="screen2 hidden">
@@ -344,6 +346,7 @@
                 <span>Reset</span>
               </button>
             </div>
+            
           </div>
         </div>
       </div>
@@ -362,7 +365,7 @@
         },
         loop: true,
       });
-
+         
       const hamburger = document.getElementById("hamburger");
       const closeIcon = document.querySelector(".closeicon");
       const menu = document.getElementById("menu");
@@ -406,7 +409,7 @@
       slide.innerHTML = `
         <a href="${ad.redirect_link}" target="_blank">
           <img src="http://localhost:5000${ad.image_url}" 
-               class="h-32 object-contain rounded-md" 
+               class="object-fit w-full rounded-md" 
                alt="Ad Image" />
         </a>
       `;

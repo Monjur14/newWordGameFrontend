@@ -1,96 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../style.css" />
     <title>Word Game</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="preload" href="level3.webp" as="image">
-    <link rel="stylesheet" href="level4.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preload" href="level3.webp" as="image" />
+    <link rel="stylesheet" href="level4.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="parent_div">
-        <div class="main_div">
-
-            <div class="timer-container">
-                <p id="timer" class="timer">25s</p>
-            </div>
-
-            <!-- Screen Three  -->
-            <div class="screen3">
-                <div class="level_center">
-                    <h2 class="levelName">Level 4</h2>
-                </div>
-        
-
-                <div class="game_main_container2 hidden">
-                    <div class="input_div">
-                        <div class="win_lose_msg">
-                            <span class="win_msg2 hidden">Correct</span>
-                            <span class="lose_msg2 hidden">Incorrect</span>
-                        </div>
-                        <div class="answer_box">
-                            <input type="text" class="give_input2 animate__animated animate__fadeInDown" value="" readonly>
-                            <input type="text" class="give_input2 animate__animated animate__fadeInUp" value="" readonly>
-                            <input type="text" class="give_input2 animate__animated animate__fadeInDown" value="" readonly>
-                            <input type="text" class="give_input2 animate__animated animate__fadeInUp" value="" readonly>
-                            <input type="text" class="give_input2 animate__animated animate__fadeInDown" value="" readonly>
-                            <input type="text" class="give_input2 animate__animated animate__fadeInDown" value="" readonly>
-                        </div>
-                    </div>
-
-                    <div class="random_textbox_container2 ">
-                        <div class="random_text_box_level2 level3_input">
-                        </div>
-                    </div>
-
-                    <div class="btn_container">
-                        <button class="reset_btn custom_button check_word_btn" onclick="reset_btn2()">
-                            <span>Reset</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Final Result Screen -->
-            <div class="result_screen3 hidden">
-                <div class="hidden win_container3">
-                    <!-- <button class="custom_button2 next_btn next_btn2 play_again">Play Again</button> -->
-                     <h1>Thank You</h1>
-                    <button class="cssbuttons-io-button play_again">
-                        Play Again
-                        <div class="icon">
-                          <svg
-                            height="24"
-                            width="24"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M0 0h24v24H0z" fill="none"></path>
-                            <path
-                              d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                              fill="currentColor"
-                            ></path>
-                          </svg>
-                        </div>
-                      </button>
-
-                      <a href="/Pages/Leaderboard/leaderboard.html" target="_blank">
-                        <p class="underline text-white" style="color: white; text-decoration: underline;">See Leaderboard</p>
-                      </a>
-                </div>
-            </div>
-
+      <div class="main_div">
+        <div class="timer-container">
+          <p id="timer" class="timer">25s</p>
         </div>
-    </div>
 
+        <!-- Screen Three  -->
+        <div class="screen3">
+          <div class="level_center">
+            <h2 class="levelName">Level 4</h2>
+          </div>
+
+          <div class="game_main_container2 hidden">
+            <div class="input_div">
+              <div class="win_lose_msg">
+                <span class="win_msg2 hidden">Correct</span>
+                <span class="lose_msg2 hidden">Incorrect</span>
+              </div>
+              <div class="answer_box">
+                <input
+                  type="text"
+                  class="give_input2 animate__animated animate__fadeInDown"
+                  value=""
+                  readonly
+                />
+                <input
+                  type="text"
+                  class="give_input2 animate__animated animate__fadeInUp"
+                  value=""
+                  readonly
+                />
+                <input
+                  type="text"
+                  class="give_input2 animate__animated animate__fadeInDown"
+                  value=""
+                  readonly
+                />
+                <input
+                  type="text"
+                  class="give_input2 animate__animated animate__fadeInUp"
+                  value=""
+                  readonly
+                />
+                <input
+                  type="text"
+                  class="give_input2 animate__animated animate__fadeInDown"
+                  value=""
+                  readonly
+                />
+                <input
+                  type="text"
+                  class="give_input2 animate__animated animate__fadeInDown"
+                  value=""
+                  readonly
+                />
+              </div>
+            </div>
+
+            <div class="random_textbox_container2">
+              <div class="random_text_box_level2 level3_input"></div>
+            </div>
+
+            <div class="btn_container">
+              <button
+                class="reset_btn custom_button check_word_btn"
+                onclick="reset_btn2()"
+              >
+                <span>Reset</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Final Result Screen -->
+        <div class="result_screen3 flex flex-col items-center relative hidden">
+          <div class="hidden win_container3">
+            <!-- <button class="custom_button2 next_btn next_btn2 play_again">Play Again</button> -->
+            <h1>Thank You</h1>
+            <button class="cssbuttons-io-button play_again">
+              Play Again
+              <div class="icon">
+                <svg
+                  height="24"
+                  width="24"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path
+                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+
+            <a href="/Pages/Leaderboard/leaderboard.html" target="_blank">
+              <p
+                class="underline text-white"
+                style="color: white; text-decoration: underline"
+              >
+                See Leaderboard
+              </p>
+            </a>
+          </div>
+
+          <!-- ADS -->
+          <div
+            class="w-[94%] h-28 absolute bottom-10 left-1/2 -translate-x-1/2 rounded-lg overflow-hidden bg-red-500"
+          >
+            <div class="swiper myAdsSwiper h-full">
+              <div class="swiper-wrapper" id="adsSwiperWrapper"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="level4.js"></script>
     <script src="sweetalert.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        autoplay: {
+          delay: 1000,
+          disableOnInteraction: false,
+        },
+        loop: true,
+      });
 
+      // Load active ads from the server and display them in the swiper
+      async function loadActiveAds() {
+        const res = await fetch("http://localhost:5000/ads");
+        const ads = await res.json();
+        const activeAds = ads.filter((ad) => ad.status === "active");
+
+        const wrapper = document.getElementById("adsSwiperWrapper");
+        wrapper.innerHTML = "";
+
+        activeAds.forEach((ad) => {
+          const slide = document.createElement("div");
+          slide.className = "swiper-slide flex justify-center items-center";
+
+          slide.innerHTML = `
+        <a href="${ad.redirect_link}" target="_blank">
+          <img src="http://localhost:5000${ad.image_url}" 
+               class="object-fit rounded-md w-full" 
+               alt="Ad Image" />
+        </a>
+      `;
+
+          wrapper.appendChild(slide);
+        });
+
+        new Swiper(".myAdsSwiper", {
+          loop: true,
+          autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+          },
+        });
+      }
+
+      loadActiveAds();
+    </script>
+  </body>
 </html>

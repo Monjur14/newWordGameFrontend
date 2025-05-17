@@ -150,7 +150,7 @@
                     class="list-disc pl-6 pt-2 text-sm text-gray-800"
                     id="referredNumbersList"
                   >
-                    <!-- Filled by JS -->
+                    <!-- will be filled by JS -->
                   </ul>
                 </details>
 
@@ -194,7 +194,7 @@
     <script>
       function decodeReferralCode(base64Str) {
         try {
-          return atob(base64Str); // browser's built-in base64 decode
+          return atob(base64Str);
         } catch (err) {
           console.error("Failed to decode referral code:", err);
           return null;
@@ -213,7 +213,7 @@
               userData.total_referrals;
 
             const referredList = document.getElementById("referredNumbersList");
-            referredList.innerHTML = ""; // clear old values
+            referredList.innerHTML = "";
             userData.referred_numbers.forEach((num) => {
               const li = document.createElement("li");
               li.textContent = num;

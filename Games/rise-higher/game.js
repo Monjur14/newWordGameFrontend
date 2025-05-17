@@ -1,3 +1,36 @@
+
+function submitScore(score) {
+  const msisdn = localStorage.getItem("msisdn");
+  const gameName = "rise_higher";
+  score = parseInt(score, 10);
+
+  if (!msisdn) {
+    console.error("MSISDN not found in localStorage");
+    return;
+  }
+
+  fetch("http://localhost:5000/submit-score", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      gameName: gameName,
+      score: score,
+      msisdn: msisdn
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.message || "Score submitted!");
+    })
+    .catch(error => {
+      console.error("Failed to submit score:", error);
+    });
+}
+
+
+
 var _SETTINGS={API:{Enabled:!0,Log:{Events:{InitializeGame:!0,EndGame:!0,Level:{Begin:!0,End:!0,Win:!0,Lose:!0,Draw:!0}}}},Ad:{Mobile:{Preroll:{Enabled:!1,Duration:5,Width:300,Height:250,Rotation:{Enabled:!1,Weight:{MobileAdInGamePreroll:40,MobileAdInGamePreroll2:40,MobileAdInGamePreroll3:20}}},Header:{Enabled:!1,Duration:5,Width:320,Height:50,Rotation:{Enabled:!1,Weight:{MobileAdInGameHeader:40,MobileAdInGameHeader2:40,MobileAdInGameHeader3:20}}},Footer:{Enabled:!1,Duration:5,Width:320,Height:50,
 Rotation:{Enabled:!1,Weight:{MobileAdInGameFooter:40,MobileAdInGameFooter2:40,MobileAdInGameFooter3:20}}},End:{Enabled:!1,Duration:1,Width:300,Height:250,Rotation:{Enabled:!1,Weight:{MobileAdInGameEnd:40,MobileAdInGameEnd2:40,MobileAdInGameEnd3:20}}}}},Language:{Default:"en"},DeveloperBranding:{Splash:{Enabled:!1},Logo:{Enabled:!1,Link:"",LinkEnabled:!1,NewWindow:!0,Width:166,Height:61}},Branding:{Splash:{Enabled:!0},Logo:{Enabled:!1,Link:"",LinkEnabled:!1,NewWindow:!0,Width:166,Height:61}},MoreGames:{Enabled:!1,
 Link:"",NewWindow:!0}};var _STRINGS={Ad:{Mobile:{Preroll:{ReadyIn:"The game is ready in ",Loading:"Your game is loading...",Close:"Close"},Header:{ReadyIn:"The game is ready in ",Loading:"Your game is loading...",Close:"Close"},End:{ReadyIn:"Advertisement ends in ",Loading:"Please wait ...",Close:"Close"}}},Splash:{Loading:"Loading ...",TapToStart:"TAP TO START"},Game:{Score:"Score:",Coins:"Coins:",Shop:"SHOP",Protect:"PROTECT THE BALLOON",Use:"Use",Best:"Best",High:"High",HighScore:"Hi-Score:",Woops:"Whoops!",BuyItems:"Buy Items",
@@ -1155,7 +1188,7 @@ ig.module("game.entities.controllers.home-controller").requires("game.entities.b
 0)}})});ig.baked=!0;ig.module("game.levels.home").requires("game.entities.controllers.home-controller").defines(function(){LevelHome={entities:[{type:"EntityHomeController",x:0,y:0}],layer:[]}});ig.baked=!0;
 ig.module("game.entities.buttons.button-pause").requires("game.entities.buttons.button","game.ui.popup-pause").defines(function(){EntityButtonPause=EntityButton.extend({animImage:new ig.Image("media/graphics/games/ui/pause-btn.png"),init:function(b,c,d){this.parent(b,c,d)},update:function(){this.parent();this.pos.y=10+ig.game.screen.y},callback:function(){ig.game.spawnEntity(EntityPopupPause,0,0)}})});ig.baked=!0;
 ig.module("game.ui.popup-gameover").requires("game.ui.popup","game.entities.buttons.button-home","game.entities.buttons.button-replay").defines(function(){EntityPopupGameOver=EntityPopup.extend({image:new ig.Image("media/graphics/games/background/bg1.png"),init:function(b,c,d){this.parent(b,c,d);this.title=_STRINGS.Game.Woops;this.btDY=this.size.y-500;this.btHome=this.spawnEntity(EntityButtonHomeEnd,ig.game.centerX-80,this.pos.y+this.btDY-ig.game.screen.y);this.btReplay=this.spawnEntity(EntityButtonReplay,
-ig.game.centerX+80,this.pos.y+this.btDY-ig.game.screen.y);ig.game.sortEntitiesDeferred();dataLayer.push({event:"levelCompletion",publisher:"PID",productKey:"riseHigher"});console.log("levelCompletion Triggered");this.highscore=ig.game.load("highscore");ig.game.score>this.highscore?(ig.game.save("highscore",ig.game.score),this.isHighscore=!0,setTimeout(function(){ig.soundHandler.sfxPlayer.play("win")},1500)):(this.isHighscore=!1,setTimeout(function(){ig.soundHandler.sfxPlayer.play("lose")},1500));
+ig.game.centerX+80,this.pos.y+this.btDY-ig.game.screen.y);ig.game.sortEntitiesDeferred();dataLayer.push({event:"levelCompletion",publisher:"PID",productKey:"riseHigher"});console.log("levelCompletion Triggered"); console.log(ig.game.score); submitScore(ig.game.score); console.log("monjur");this.highscore=ig.game.load("highscore");ig.game.score>this.highscore?(ig.game.save("highscore",ig.game.score),this.isHighscore=!0,setTimeout(function(){ig.soundHandler.sfxPlayer.play("win")},1500)):(this.isHighscore=!1,setTimeout(function(){ig.soundHandler.sfxPlayer.play("lose")},1500));
 this.leftX=ig.game.centerX;this.rightX=ig.game.centerX+60;this.textDY=192-ig.game.screen.y;this.textDY2=237-ig.game.screen.y},update:function(){this.parent();this.btHome.pos.y=this.btReplay.pos.y=this.pos.y+this.btDY},moveIn:function(){ig.game.getEntitiesByType(EntityGameController)[0].gameOver=!0;var b=this;this.tween({pos:{y:this.y0}},this.dt,{easing:this.easingIn,onComplete:function(){b.callbackIn()},delay:1}).start()},draw:function(){this.parent();ig.game.drawText(_STRINGS.Game.Woops,this.titleX,
 this.pos.y+this.textDY+48,65,"#fff","center");this.isHighscore?(ig.game.drawText(_STRINGS.Game.Score,this.leftX,this.pos.y+this.textDY+155,40,"#fff","right"),ig.game.drawText(ig.game.score,this.rightX-15,this.pos.y+this.textDY+155,40,"#fff","left"),ig.game.drawText(_STRINGS.Game.HighScore,this.leftX,this.pos.y+this.textDY2+155,40,"#fff","right"),ig.game.drawText(ig.game.score,this.rightX-15,this.pos.y+this.textDY2+155,40,"#fff","left")):(ig.game.drawText(_STRINGS.Game.Score,this.leftX,this.pos.y+
 this.textDY+155,40,"#fff","right"),ig.game.drawText(ig.game.score,this.rightX-15,this.pos.y+this.textDY+155,40,"#fff","left"),ig.game.drawText(_STRINGS.Game.HighScore,this.leftX,this.pos.y+this.textDY2+155,40,"#fff","right"),ig.game.drawText(this.highscore,this.rightX-15,this.pos.y+this.textDY2+155,40,"#fff","left"))}})});ig.baked=!0;
@@ -1231,3 +1264,5 @@ this.dctf()},dctf:function(){this.COPYRIGHT},clearCanvas:function(b,c,d){var e=b
 "10px Arial",ig.system.context.fillStyle="#ffffff",ig.system.context.fillText(this.debugLine-this.debug.length+i+": "+this.debug[i],10,50+10*i)},debugCL:function(b){this.debug?(50>this.debug.length||this.debug.splice(0,1),this.debug.push(b),this.debugLine++):(this.debug=[],this.debugLine=1,this.debug.push(b));console.log(b)},debugEnable:function(){ig.input.pressed("click")&&(this.debugEnableTimer=new ig.Timer(2));this.debugEnableTimer&&0>this.debugEnableTimer.delta()?ig.input.released("click")&&(this.debugEnableTimer=
 null):this.debugEnableTimer&&0<this.debugEnableTimer.delta()&&(this.debugEnableTimer=null,this.viewDebug=this.viewDebug?!1:!0)}});ig.domHandler=null;ig.domHandler=new ig.DomHandler;ig.domHandler.forcedDeviceDetection();ig.domHandler.forcedDeviceRotation();ig.apiHandler=new ig.ApiHandler;ig.sizeHandler=new ig.SizeHandler(ig.domHandler);ig.ua.mobile?(ig.Sound.enabled=!1,ig.main("#canvas",MyGame,60,ig.sizeHandler.mobile.actualResolution.x,ig.sizeHandler.mobile.actualResolution.y,ig.sizeHandler.scale,
 ig.SplashLoader),ig.sizeHandler.resize()):ig.main("#canvas",MyGame,60,ig.sizeHandler.desktop.actualResolution.x,ig.sizeHandler.desktop.actualResolution.y,ig.sizeHandler.scale,ig.SplashLoader);ig.soundHandler=null;ig.soundHandler=new ig.SoundHandler;ig.sizeHandler.reorient();this.DOMAINLOCK_BREAKOUT_ATTEMPT;this.END_OBFUSCATION});
+
+
